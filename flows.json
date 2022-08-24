@@ -1,0 +1,1941 @@
+[
+    {
+        "id": "8595b6d4.a51f68",
+        "type": "tab",
+        "label": "Sensores_Edificio",
+        "disabled": false,
+        "info": "Manejo de telegram para edificio"
+    },
+    {
+        "id": "63c3d7ac.e67068",
+        "type": "group",
+        "z": "8595b6d4.a51f68",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "d5b0d965.8eeb18",
+            "428ef7e7.d5dbe8",
+            "96264002.9a23d",
+            "b8fb60d8.ee7f3"
+        ],
+        "x": 54,
+        "y": 39,
+        "w": 412,
+        "h": 142
+    },
+    {
+        "id": "6cc6f1f1.3e75d",
+        "type": "group",
+        "z": "8595b6d4.a51f68",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "fef1a28e.fe6f4",
+            "310c0221.6bc6ee",
+            "6d845807.7cd798",
+            "4aa8c463.2b2adc",
+            "7a2a2abb.45d084",
+            "7bb10696.ec2f18",
+            "45957e88.d70f6",
+            "4c04c450.b0bdfc",
+            "164f1049.55d4a",
+            "4e544e88.fe061",
+            "2453dc24.0b2ce4",
+            "93346df2.d4602",
+            "843e6814.3366a8",
+            "7fe8166c.659e58",
+            "14e2754a.875fdb",
+            "4617cc5d1d7c857f"
+        ],
+        "x": 94,
+        "y": 519,
+        "w": 1412,
+        "h": 322
+    },
+    {
+        "id": "d4f2ebee.0dbc18",
+        "type": "group",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "fa68e470.9c21e8",
+            "4b6126a0.a562f8",
+            "7f177397.f3946c",
+            "7d83a24a.890c0c",
+            "b37858ce.4e9498",
+            "1767c774.af8009",
+            "4ef48cf1.efd764",
+            "5c0e0b96.7bbc94",
+            "d3e9d7f7.47fcc8",
+            "d3c5caa6.6781d8",
+            "2ae642d2.1472ee",
+            "8b08b51f.e38ed8",
+            "a82ef763.ac2178",
+            "405c6fda.5d43a",
+            "62a1c92e.6081d8"
+        ],
+        "x": 154,
+        "y": 219,
+        "w": 1432,
+        "h": 302
+    },
+    {
+        "id": "4617cc5d1d7c857f",
+        "type": "junction",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "x": 680,
+        "y": 580,
+        "wires": [
+            [
+                "310c0221.6bc6ee",
+                "7bb10696.ec2f18",
+                "7a2a2abb.45d084"
+            ]
+        ]
+    },
+    {
+        "id": "36864fc3347cf5be",
+        "type": "junction",
+        "z": "8595b6d4.a51f68",
+        "x": 1860,
+        "y": 1460,
+        "wires": [
+            [
+                "f971341755268546"
+            ]
+        ]
+    },
+    {
+        "id": "796e1597dfc2a337",
+        "type": "junction",
+        "z": "8595b6d4.a51f68",
+        "x": 1880,
+        "y": 440,
+        "wires": [
+            [
+                "f971341755268546"
+            ]
+        ]
+    },
+    {
+        "id": "f119464a56897860",
+        "type": "junction",
+        "z": "8595b6d4.a51f68",
+        "x": 1900,
+        "y": 820,
+        "wires": [
+            [
+                "f971341755268546"
+            ]
+        ]
+    },
+    {
+        "id": "6e888858.a02168",
+        "type": "mqtt-broker",
+        "name": "myqtthub",
+        "broker": "node02.myqtthub.com",
+        "port": "8883",
+        "tls": "8ef2b1ba.8ce8d",
+        "clientid": "nodered",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "nodered/LWT",
+        "birthQos": "0",
+        "birthRetain": "true",
+        "birthPayload": "Online",
+        "birthMsg": {},
+        "closeTopic": "nodered/LWT",
+        "closeQos": "0",
+        "closePayload": "Offline",
+        "closeMsg": {},
+        "willTopic": "nodered/LWT",
+        "willQos": "0",
+        "willRetain": "true",
+        "willPayload": "Offline",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": "0"
+    },
+    {
+        "id": "85814c6a.5b74c",
+        "type": "telegram bot",
+        "botname": "SantaCeciliaIX_BOT",
+        "usernames": "",
+        "chatids": "${BOT_IDS}",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": true
+    },
+    {
+        "id": "8ef2b1ba.8ce8d",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "77c80ccd.9b2f04",
+        "type": "debug",
+        "z": "8595b6d4.a51f68",
+        "name": "estadoo",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "d67670d.d1f309",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "Respueta info",
+        "func": "var msj = \"Bienvenido al bot del *Edificio Santa Cecilia IX*\\r\\n\";\nmsj += \"\\r\\n\";\nmsj += \"/estado - Este comando es usado para verificar el estado actual de la puerta y del garaje, si estan abiertas o cerradas\\r\\n\";\nmsj += \"\\r\\n\";\nmsj += \"/puerta - Este comando permite que la apertura de la puerta no envie mensaje de alarma al superar el tiempo limite para\";\nmsj += \"cancelar la opción se debe cerrar la puerta\\r\\n\";\nmsj += \"\\r\\n\";\nmsj += \"/garaje - Este comando permite que la apertura del garaje no envie mensaje de alarma al superar el tiempo limite para\";\nmsj += \"cancelar la opción se debe cerrar el garaje\\r\\n\";\nmsj += \"\\r\\n\";\nmsj += \"/info - muestra este mensaje\";\n\nmsg.payload.options = {parse_mode : \"Markdown\"};\nmsg.payload.content = msj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 1580,
+        "wires": [
+            [
+                "36864fc3347cf5be"
+            ]
+        ]
+    },
+    {
+        "id": "6507542a.07ee9c",
+        "type": "catch",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 120,
+        "y": 2320,
+        "wires": [
+            [
+                "4d6364aa.17376c"
+            ]
+        ]
+    },
+    {
+        "id": "4d6364aa.17376c",
+        "type": "debug",
+        "z": "8595b6d4.a51f68",
+        "name": "catch",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 2320,
+        "wires": []
+    },
+    {
+        "id": "b7f6aa26.ae0f58",
+        "type": "mqtt out",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "cmnd/nodoscix/event",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6e888858.a02168",
+        "x": 740,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "ffcd40ad.8952b",
+        "type": "change",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "chatid",
+                "pt": "flow",
+                "to": "payload.chatId",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "estado",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 1320,
+        "wires": [
+            [
+                "b7f6aa26.ae0f58",
+                "77c80ccd.9b2f04"
+            ]
+        ]
+    },
+    {
+        "id": "7257379b.8148a8",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "stat/nodoscix/estado",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 1400,
+        "wires": [
+            [
+                "6b93dbcb.d2eb04",
+                "77c80ccd.9b2f04"
+            ]
+        ]
+    },
+    {
+        "id": "c2b9f08d.7d01a",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "multiple inputs",
+        "func": "context.data = context.data || {};\n\nswitch (msg.topic) {\n    case \"stat/nodoscix/puerta\":\n        context.data.puerta = msg.payload;\n        msg = null;\n        break;\n    case \"stat/nodoscix/garaje\":\n        context.data.garaje = msg.payload;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.puerta != null && context.data.garaje != null) {\n    var msj = context.data;\n    context.data=null;\n\treturn {payload:msj};\n} else return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b93dbcb.d2eb04",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "func": "var puerta=\"\",garaje=\"\";\nif(msg.payload == 00){\n    puerta = \"*CERRADA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == 01){\n    puerta = \"*CERRADA*\";\n    garaje = \"*ABIERTO*\";\n}\nelse if(msg.payload == 10){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == 11){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*ABIERTO*\";\n}\n\nvar t1p = flow.get('tmpuerta');\nvar t1g = flow.get('tmgaraje');\nvar tn = new Date().getTime();\nvar tpmin = Math.round((tn - t1p)/60000);\nvar tgmin = Math.round((tn - t1g)/60000);\nvar thpuerta = Math.floor(tpmin/60);\nvar thgaraje = Math.floor(tgmin/60);\nvar tminpuerta = Math.round(((tpmin/60)- thpuerta)*60);\nvar tmingaraje = Math.round(((tgmin/60)- thgaraje)*60);\n\nvar msj = \"\\u2705*INFORMACION:*\\r\\n\";\nmsj += \"La *PUERTA* está  \"+ puerta +\" desde hace \" + thpuerta + \" horas y \" + tminpuerta +\" Minutos\";\nmsj += \"\\r\\n\";\nmsj += \"El *GARAJE* está  \"+ garaje + \" desde hace \" + thgaraje + \" horas y \" + tmingaraje + \" Minutos\";\nmsj += \"\\r\\n\";\nvar cid = flow.get('chatid');\nmsg.payload = {chatId:cid,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 1440,
+        "wires": [
+            [
+                "36864fc3347cf5be",
+                "77c80ccd.9b2f04"
+            ]
+        ]
+    },
+    {
+        "id": "d5b0d965.8eeb18",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "g": "63c3d7ac.e67068",
+        "name": "",
+        "topic": "stat/nodoscix/garaje",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 140,
+        "wires": [
+            [
+                "b8fb60d8.ee7f3"
+            ]
+        ]
+    },
+    {
+        "id": "428ef7e7.d5dbe8",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "g": "63c3d7ac.e67068",
+        "name": "",
+        "topic": "stat/nodoscix/puerta",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 80,
+        "wires": [
+            [
+                "96264002.9a23d"
+            ]
+        ]
+    },
+    {
+        "id": "96264002.9a23d",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "63c3d7ac.e67068",
+        "name": "",
+        "func": "var est1 = flow.get(\"estpuerta\") || 0;\nvar est = msg.payload;\nflow.set(\"estpuerta\",est);\nif(est1 != est){\n    var tm = new Date().getTime()\n    var tm1 = flow.get('tmpuerta') || 0;\n    flow.set('tmpuerta',tm)\n    flow.set('tm1puerta',tm1)\n    msg.payload = {Time:tm, puerta:msg.payload}\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b8fb60d8.ee7f3",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "63c3d7ac.e67068",
+        "name": "",
+        "func": "var est1 = flow.get(\"estgaraje\") || 0;\nvar est = msg.payload;\nflow.set(\"estgaraje\",est);\nif(est1 != est){\n    var tm = new Date().getTime()\n    var tm1 = flow.get('tmgaraje') || 0;\n    flow.set('tmgaraje',tm)\n    flow.set('tm1garaje',tm1)\n    msg.payload = {Time:tm, garaje:msg.payload}\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fef1a28e.fe6f4",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "topic": "stat/nodoscix/garaje",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 210,
+        "y": 580,
+        "wires": [
+            [
+                "7fe8166c.659e58"
+            ]
+        ]
+    },
+    {
+        "id": "d3c5caa6.6781d8",
+        "type": "debug",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1490,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "310c0221.6bc6ee",
+        "type": "trigger",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "5",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "0",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 890,
+        "y": 560,
+        "wires": [
+            [
+                "6d845807.7cd798"
+            ]
+        ]
+    },
+    {
+        "id": "6d845807.7cd798",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "func": "var al = 1;\nflow.set('algaraje',al);\nvar t1p = flow.get('tmgaraje');\nvar tn = new Date().getTime();\nvar tpuerta = Math.round((tn - t1p)/60000);\n\nvar msj = \"\\u26d4*ALARMA:*\\u26d4\\r\\n\"\nmsj += \"El *GARAJE* ha estado *ABIERTO* durante \" + tpuerta + \" Minutos\";\nmsj += \"\\r\\n\";\n\nconst id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\nmsg.payload = {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 560,
+        "wires": [
+            [
+                "164f1049.55d4a",
+                "f119464a56897860"
+            ]
+        ]
+    },
+    {
+        "id": "164f1049.55d4a",
+        "type": "debug",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1410,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "4aa8c463.2b2adc",
+        "type": "trigger",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "-1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "0",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1130,
+        "y": 620,
+        "wires": [
+            [
+                "6d845807.7cd798"
+            ]
+        ]
+    },
+    {
+        "id": "7a2a2abb.45d084",
+        "type": "switch",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "cerrada",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 900,
+        "y": 740,
+        "wires": [
+            [
+                "4aa8c463.2b2adc",
+                "45957e88.d70f6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7bb10696.ec2f18",
+        "type": "trigger",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "op1": "",
+        "op2": "1",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "8",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "0",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 910,
+        "y": 620,
+        "wires": [
+            [
+                "4aa8c463.2b2adc"
+            ]
+        ]
+    },
+    {
+        "id": "45957e88.d70f6",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "func": "var al = flow.get('algaraje') || 0;\nif(al == 1){\n    al = 0;\n    flow.set('algaraje',al);\n    var t1p = flow.get('tm1garaje');\n    var tn = new Date().getTime();\n    var t = Math.round((tn - t1p)/60000);\n    \n    var msj = \"\\u2705*INFORMACION:*\\r\\n\"\n    msj += \"El *GARAJE* fue *CERRADO* despues de \" + t + \" Minutos abierto\";\n    msj += \"\\r\\n\";\n    \n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\n    msg.payload = {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 680,
+        "wires": [
+            [
+                "164f1049.55d4a",
+                "f119464a56897860"
+            ]
+        ]
+    },
+    {
+        "id": "ce7185b8.7fb4a8",
+        "type": "delay",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 2280,
+        "y": 760,
+        "wires": [
+            [
+                "385efb29.dfc984",
+                "3e28c1b7c7111538"
+            ]
+        ]
+    },
+    {
+        "id": "fa68e470.9c21e8",
+        "type": "trigger",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "2",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "0",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1010,
+        "y": 260,
+        "wires": [
+            [
+                "7f177397.f3946c"
+            ]
+        ]
+    },
+    {
+        "id": "4b6126a0.a562f8",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "topic": "stat/nodoscix/puerta",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 280,
+        "wires": [
+            [
+                "405c6fda.5d43a",
+                "d3c5caa6.6781d8"
+            ]
+        ]
+    },
+    {
+        "id": "7f177397.f3946c",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "func": "var al = 1;\nflow.set('alpuerta',al);\nvar t1p = flow.get('tmpuerta');\nvar tn = new Date().getTime();\nvar tpuerta = Math.round((tn - t1p)/60000);\n\nvar msj = \"\\u26d4*ALARMA:*\\u26d4\\r\\n\"\nmsj += \"La *PUERTA* ha estado *ABIERTA* durante \" + tpuerta + \" Minutos\";\nmsj += \"\\r\\n\";\n\nconst id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\n\nmsg.payload = {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1460,
+        "y": 260,
+        "wires": [
+            [
+                "d3c5caa6.6781d8",
+                "796e1597dfc2a337"
+            ]
+        ]
+    },
+    {
+        "id": "7d83a24a.890c0c",
+        "type": "trigger",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "-1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "0",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1290,
+        "y": 320,
+        "wires": [
+            [
+                "7f177397.f3946c"
+            ]
+        ]
+    },
+    {
+        "id": "b37858ce.4e9498",
+        "type": "switch",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "cerrada",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1040,
+        "y": 400,
+        "wires": [
+            [
+                "7d83a24a.890c0c",
+                "4ef48cf1.efd764"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1767c774.af8009",
+        "type": "trigger",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "op1": "",
+        "op2": "1",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "5",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "0",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1010,
+        "y": 320,
+        "wires": [
+            [
+                "7d83a24a.890c0c"
+            ]
+        ]
+    },
+    {
+        "id": "4ef48cf1.efd764",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "func": "var al = flow.get('alpuerta') || 0;\nif(al == 1){\n    al = 0;\n    flow.set('alpuerta',al);\n    var t1p = flow.get('tm1puerta');\n    var tn = new Date().getTime();\n    var t = Math.round((tn - t1p)/60000);\n    \n    var msj = \"\\u2705*INFORMACION:*\\r\\n\"\n    msj += \"La *PUERTA* fue *CERRADA* despues de \" + t + \" Minutos abierta\";\n    msj += \"\\r\\n\";\n\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\n    \n    msg.payload = { chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 380,
+        "wires": [
+            [
+                "d3c5caa6.6781d8",
+                "796e1597dfc2a337"
+            ]
+        ]
+    },
+    {
+        "id": "5c0e0b96.7bbc94",
+        "type": "change",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "alpuerta",
+                "pt": "flow",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 400,
+        "wires": [
+            [
+                "1767c774.af8009",
+                "fa68e470.9c21e8",
+                "7d83a24a.890c0c"
+            ]
+        ]
+    },
+    {
+        "id": "2ae642d2.1472ee",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "Respueta info",
+        "func": "var msj = \"Se ha activado la *_apertura de la puerta sin alarma_*, para desactivar por favor *_cerrar la puerta_*\\r\\n\";\nmsg.payload.options = {parse_mode : \"MarkdownV2\"};\nmsg.payload.content = msj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 480,
+        "wires": [
+            [
+                "796e1597dfc2a337"
+            ]
+        ]
+    },
+    {
+        "id": "8b08b51f.e38ed8",
+        "type": "delay",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 440,
+        "wires": [
+            [
+                "5c0e0b96.7bbc94"
+            ]
+        ]
+    },
+    {
+        "id": "2453dc24.0b2ce4",
+        "type": "change",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "algaraje",
+                "pt": "flow",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 700,
+        "wires": [
+            [
+                "310c0221.6bc6ee",
+                "7bb10696.ec2f18",
+                "4aa8c463.2b2adc"
+            ]
+        ]
+    },
+    {
+        "id": "4e544e88.fe061",
+        "type": "delay",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 620,
+        "y": 760,
+        "wires": [
+            [
+                "2453dc24.0b2ce4"
+            ]
+        ]
+    },
+    {
+        "id": "93346df2.d4602",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "Respueta info",
+        "func": "var msj = \"Se ha activado la *_apertura del garaje sin alarma_*, para desactivar por favor *_cerrar el garaje_*\\r\\n\";\nmsg.payload.options = {parse_mode : \"MarkdownV2\"};\nmsg.payload.content = msj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 800,
+        "wires": [
+            [
+                "f119464a56897860"
+            ]
+        ]
+    },
+    {
+        "id": "2b1fec0b.6be214",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "Respueta info",
+        "func": "var en = flow.get('enabled') || 1;\nen=1;\nflow.set('enabled',en);\nvar msj = \"\\u2705*INFORMACION:*\\r\\n\";\nmsj += \"Se ha *_ACTIVADO el sistema de sensores_*\\r\\n\";\nmsg.payload.options = {parse_mode : \"MarkdownV2\"};\nmsg.payload.content = msj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 1220,
+        "wires": [
+            [
+                "36864fc3347cf5be"
+            ]
+        ]
+    },
+    {
+        "id": "a82ef763.ac2178",
+        "type": "switch",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "property": "enabled",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 360,
+        "wires": [
+            [
+                "2ae642d2.1472ee",
+                "8b08b51f.e38ed8",
+                "5c0e0b96.7bbc94",
+                "d3c5caa6.6781d8"
+            ]
+        ]
+    },
+    {
+        "id": "405c6fda.5d43a",
+        "type": "switch",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "property": "enabled",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 280,
+        "wires": [
+            [
+                "b37858ce.4e9498",
+                "1767c774.af8009",
+                "fa68e470.9c21e8"
+            ]
+        ]
+    },
+    {
+        "id": "843e6814.3366a8",
+        "type": "switch",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "property": "enabled",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 410,
+        "y": 660,
+        "wires": [
+            [
+                "2453dc24.0b2ce4",
+                "4e544e88.fe061",
+                "93346df2.d4602",
+                "164f1049.55d4a"
+            ]
+        ]
+    },
+    {
+        "id": "7fe8166c.659e58",
+        "type": "switch",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "property": "enabled",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 580,
+        "wires": [
+            [
+                "4617cc5d1d7c857f"
+            ]
+        ]
+    },
+    {
+        "id": "ce90a758.fd0b78",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "Respueta info",
+        "func": "var en = flow.get('enabled') || 0;\nen=0;\nflow.set('enabled',en);\nvar msj = \"\\u2705*INFORMACION:*\\r\\n\";\nmsj += \"Se ha *_DESACTIVADO el sistema de sensores_*\\r\\n\";\nmsg.payload.options = {parse_mode : \"MarkdownV2\"};\nmsg.payload.content = msj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1000,
+        "wires": [
+            [
+                "36864fc3347cf5be"
+            ]
+        ]
+    },
+    {
+        "id": "6ff8f66f.63ade8",
+        "type": "mqtt out",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "cmnd/nodoscix/event",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6e888858.a02168",
+        "x": 680,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "58242d4e.dc9dd4",
+        "type": "change",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "activar",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 1140,
+        "wires": [
+            [
+                "6ff8f66f.63ade8"
+            ]
+        ]
+    },
+    {
+        "id": "908b8a07.657708",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "tele/nodoscix/LWT",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 1720,
+        "wires": [
+            [
+                "d777ce08.77cde",
+                "8328beeb.86a4d"
+            ]
+        ]
+    },
+    {
+        "id": "39b3aceb.a9e774",
+        "type": "debug",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "aec327ba.c9e758",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "func": "",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nconst horaActual = new Date().getTime();\nflow.set('tmpuerta', horaActual)\nflow.set('tm1puerta', horaActual)\nflow.set('tmgaraje', horaActual)\nflow.set('tm1garaje', horaActual)",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c61c2f7.0d51c",
+        "type": "comment",
+        "z": "8595b6d4.a51f68",
+        "name": "INFORMACION RELEVANTE",
+        "info": "* a tener en cuenta en caso de desconexion o apagado, los tiempos se manejan en nube.\n* offline no funciona bien con myqtthub\n* ",
+        "x": 660,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "41e9e8.30465618",
+        "type": "change",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "status 0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 1900,
+        "wires": [
+            [
+                "588d533d.cd3e5c"
+            ]
+        ]
+    },
+    {
+        "id": "588d533d.cd3e5c",
+        "type": "mqtt out",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "cmnd/nodoscix/backlog",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6e888858.a02168",
+        "x": 650,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "6d3f9901.d47548",
+        "type": "json",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 370,
+        "y": 1980,
+        "wires": [
+            [
+                "fe2c120.7f771f",
+                "b4d07497.b95b48"
+            ]
+        ]
+    },
+    {
+        "id": "b4d07497.b95b48",
+        "type": "debug",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 1980,
+        "wires": []
+    },
+    {
+        "id": "39662b3d.a80ce4",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "stat/nodoscix/STATUS5",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 1960,
+        "wires": [
+            [
+                "6d3f9901.d47548"
+            ]
+        ]
+    },
+    {
+        "id": "fe2c120.7f771f",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "func": "if(msg.topic ==\"stat/nodoscix/STATUS5\"){\n    var ip1 = flow.get('ip1') || \"0\";\n    ip1 = msg.payload.StatusNET.IPAddress;\n    flow.set('ip1',ip1);\n    msg.payload = {ip:ip1};\n    return msg;\n}\nelse if(msg.topic ==\"stat/nodoscix/STATUS11\"){\n    var upt = flow.get('upt') || \"0\";\n    var time = flow.get(\"tim\") || \"0\";\n    upt = msg.payload.StatusSTS.Uptime;\n    time = msg.payload.StatusSTS.Time;\n    flow.set('upt',upt);\n    flow.set('tim',time);\n    msg.payload = {uptime:upt,timeup:time};\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "13231ad3.1ec145",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "func": "var ip1 = flow.get('ip1') || \"0\";\nvar upt = flow.get('upt') || \"0\";\nvar tim = flow.get('tim') || \"0\";\nvar msj = \"Hora actualizacion: \"+ tim +\"\\r\\nIP: \" + ip1 + \"\\r\\nUptime: \" + upt ;\nmsg.payload.content = msj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1860,
+        "wires": [
+            [
+                "36864fc3347cf5be"
+            ]
+        ]
+    },
+    {
+        "id": "7d8af354.34c09c",
+        "type": "delay",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 1860,
+        "wires": [
+            [
+                "13231ad3.1ec145"
+            ]
+        ]
+    },
+    {
+        "id": "6b84058d.233b8c",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "multiple inputs",
+        "func": "context.data = context.data || {};\nswitch (msg.topic) {\n    case \"tele/nodoscix/STATE\":\n        var up = flow.get('upt') || \"0\";\n        var time = flow.get(\"tim\") || \"0\";\n        up = msg.payload.Uptime;\n        time = msg.payload.Time;\n        flow.set('upt',up);\n        flow.set('tim',time);\n        context.data.upp = up\n        context.data.tme = time\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO2\":\n        context.data.inf1 = msg.payload.Info2.IPAddress;\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO3\":\n        context.data.inf2 = msg.payload.Info3.RestartReason;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.inf1 != null && context.data.inf2 != null && context.data.upp != null && context.data.tme != null) {\n    var msj = \"Hora: \"+ context.data.tme +\"\\r\\nUptime: \" + context.data.upp +\"\\r\\nIP: \" + context.data.inf1 +\"\\r\\nRestart Reason: \" + context.data.inf2;\n    context.data=null;\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2));\n    msg = {payload: {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}}};\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 2040,
+        "wires": [
+            [
+                "b4d07497.b95b48",
+                "36864fc3347cf5be"
+            ]
+        ]
+    },
+    {
+        "id": "2d212b1a.cf5854",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "tele/nodoscix/INFO2",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 2100,
+        "wires": [
+            [
+                "c117387f.c1ee78"
+            ]
+        ]
+    },
+    {
+        "id": "c117387f.c1ee78",
+        "type": "json",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 370,
+        "y": 2040,
+        "wires": [
+            [
+                "6b84058d.233b8c",
+                "b4d07497.b95b48"
+            ]
+        ]
+    },
+    {
+        "id": "a31a69eb.04e658",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "LWT OFFLINE",
+        "func": "if(msg.payload == \"Offline\"){\n    var tmp = new Date();\n    var msj = \"Hora Desconexion: \"+ tmp +\"\\r\\nEl Nodo se ha *DESCONECTADO* \";\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {payload: {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}}};\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1720,
+        "wires": [
+            [
+                "39b3aceb.a9e774",
+                "36864fc3347cf5be"
+            ]
+        ]
+    },
+    {
+        "id": "d777ce08.77cde",
+        "type": "trigger",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "op1": "",
+        "op2": "",
+        "op1type": "nul",
+        "op2type": "payl",
+        "duration": "30",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "Online",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 350,
+        "y": 1720,
+        "wires": [
+            [
+                "a31a69eb.04e658"
+            ]
+        ]
+    },
+    {
+        "id": "20e44cc0.d4eb94",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "stat/nodoscix/STATUS11",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 2000,
+        "wires": [
+            [
+                "6d3f9901.d47548"
+            ]
+        ]
+    },
+    {
+        "id": "e6e8375c.abf958",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "tele/nodoscix/INFO3",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 2140,
+        "wires": [
+            [
+                "c117387f.c1ee78"
+            ]
+        ]
+    },
+    {
+        "id": "cb4c3936.232468",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "tele/nodoscix/STATE",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 2180,
+        "wires": [
+            [
+                "c117387f.c1ee78"
+            ]
+        ]
+    },
+    {
+        "id": "8328beeb.86a4d",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "LWT ONLINE",
+        "func": "if(msg.payload == \"Online\"){\n    var tmp = new Date();\n    var msj = \"Hora Desconexion: \"+ tmp +\"\\r\\nEl Nodo se ha *CONECTADO* \";\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {payload: {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}}};\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1760,
+        "wires": [
+            [
+                "36864fc3347cf5be"
+            ]
+        ]
+    },
+    {
+        "id": "fcc08346.cf557",
+        "type": "telegram command",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "command": "/info@SantaCeciliaBot",
+        "bot": "85814c6a.5b74c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 160,
+        "y": 1580,
+        "wires": [
+            [
+                "d67670d.d1f309"
+            ]
+        ]
+    },
+    {
+        "id": "d3e9d7f7.47fcc8",
+        "type": "telegram command",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "command": "/puerta@SantaCeciliaBot",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "bot": "85814c6a.5b74c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 310,
+        "y": 360,
+        "wires": [
+            [
+                "a82ef763.ac2178"
+            ]
+        ]
+    },
+    {
+        "id": "f495ec5d.e813",
+        "type": "telegram command",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "command": "/estado@SantaCeciliaBot",
+        "bot": "85814c6a.5b74c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 210,
+        "y": 1320,
+        "wires": [
+            [
+                "ffcd40ad.8952b",
+                "77c80ccd.9b2f04"
+            ]
+        ]
+    },
+    {
+        "id": "4c04c450.b0bdfc",
+        "type": "telegram command",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "command": "/garaje@SantaCeciliaBot",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "bot": "85814c6a.5b74c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 230,
+        "y": 660,
+        "wires": [
+            [
+                "843e6814.3366a8"
+            ]
+        ]
+    },
+    {
+        "id": "47586b44.bcf224",
+        "type": "telegram command",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "command": "/activar@SantaCeciliaBot",
+        "bot": "85814c6a.5b74c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 210,
+        "y": 1140,
+        "wires": [
+            [
+                "2b1fec0b.6be214",
+                "58242d4e.dc9dd4"
+            ]
+        ]
+    },
+    {
+        "id": "62a1c92e.6081d8",
+        "type": "telegram command",
+        "z": "8595b6d4.a51f68",
+        "g": "d4f2ebee.0dbc18",
+        "name": "",
+        "command": "/desactivar@SantaCeciliaBot",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "bot": "85814c6a.5b74c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 300,
+        "y": 440,
+        "wires": [
+            [
+                "5c0e0b96.7bbc94"
+            ]
+        ]
+    },
+    {
+        "id": "14e2754a.875fdb",
+        "type": "telegram command",
+        "z": "8595b6d4.a51f68",
+        "g": "6cc6f1f1.3e75d",
+        "name": "",
+        "command": "/desactivar@SantaCeciliaBot",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "bot": "85814c6a.5b74c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 240,
+        "y": 780,
+        "wires": [
+            [
+                "2453dc24.0b2ce4"
+            ]
+        ]
+    },
+    {
+        "id": "8d8a7491.7c84e8",
+        "type": "telegram command",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "command": "/desactivar@SantaCeciliaBot",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "bot": "85814c6a.5b74c",
+        "strict": true,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 220,
+        "y": 1000,
+        "wires": [
+            [
+                "ce90a758.fd0b78"
+            ]
+        ]
+    },
+    {
+        "id": "6d3303f4.bfbafc",
+        "type": "telegram command",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "command": "/state@SantaCeciliaBot",
+        "bot": "85814c6a.5b74c",
+        "strict": false,
+        "hasresponse": false,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 1,
+        "x": 160,
+        "y": 1900,
+        "wires": [
+            [
+                "41e9e8.30465618",
+                "7d8af354.34c09c"
+            ]
+        ]
+    },
+    {
+        "id": "385efb29.dfc984",
+        "type": "telegram sender",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "bot": "85814c6a.5b74c",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 2550,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f971341755268546",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "msg handler",
+        "func": "const id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\nif (msg.payload.chatId === id){\n    return [msg,null];\n}\nelse{\n    return[null,msg];\n}\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2030,
+        "y": 760,
+        "wires": [
+            [
+                "26fa7976d5283062"
+            ],
+            [
+                "ce7185b8.7fb4a8"
+            ]
+        ]
+    },
+    {
+        "id": "26fa7976d5283062",
+        "type": "delay",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "30",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 2280,
+        "y": 700,
+        "wires": [
+            [
+                "385efb29.dfc984",
+                "3e28c1b7c7111538"
+            ]
+        ]
+    },
+    {
+        "id": "3e28c1b7c7111538",
+        "type": "debug",
+        "z": "8595b6d4.a51f68",
+        "name": "salida",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2570,
+        "y": 600,
+        "wires": []
+    }
+]

@@ -1,0 +1,2 @@
+flows_cred.json filter=git-crypt diff=git-crypt
+settings_dcevedo.js filter=git-crypt diff=git-crypt
