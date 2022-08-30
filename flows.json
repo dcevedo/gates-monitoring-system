@@ -25,7 +25,7 @@
             "96264002.9a23d",
             "b8fb60d8.ee7f3"
         ],
-        "x": 54,
+        "x": 34,
         "y": 39,
         "w": 412,
         "h": 142
@@ -34,14 +34,9 @@
         "id": "6cc6f1f1.3e75d",
         "type": "group",
         "z": "8595b6d4.a51f68",
+        "name": "GARAJE",
         "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
+            "label": true
         },
         "nodes": [
             "fef1a28e.fe6f4",
@@ -61,8 +56,8 @@
             "14e2754a.875fdb",
             "4617cc5d1d7c857f"
         ],
-        "x": 94,
-        "y": 519,
+        "x": 34,
+        "y": 539,
         "w": 1412,
         "h": 322
     },
@@ -70,7 +65,7 @@
         "id": "d4f2ebee.0dbc18",
         "type": "group",
         "z": "8595b6d4.a51f68",
-        "name": "",
+        "name": "Puerta",
         "style": {
             "label": true
         },
@@ -91,7 +86,7 @@
             "405c6fda.5d43a",
             "62a1c92e.6081d8"
         ],
-        "x": 154,
+        "x": 34,
         "y": 219,
         "w": 1432,
         "h": 302
@@ -101,8 +96,8 @@
         "type": "junction",
         "z": "8595b6d4.a51f68",
         "g": "6cc6f1f1.3e75d",
-        "x": 680,
-        "y": 580,
+        "x": 620,
+        "y": 600,
         "wires": [
             [
                 "310c0221.6bc6ee",
@@ -228,8 +223,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 820,
-        "y": 1420,
+        "x": 780,
+        "y": 1360,
         "wires": []
     },
     {
@@ -244,7 +239,7 @@
         "finalize": "",
         "libs": [],
         "x": 440,
-        "y": 1580,
+        "y": 1520,
         "wires": [
             [
                 "36864fc3347cf5be"
@@ -259,7 +254,7 @@
         "scope": null,
         "uncaught": false,
         "x": 120,
-        "y": 2320,
+        "y": 2280,
         "wires": [
             [
                 "4d6364aa.17376c"
@@ -280,7 +275,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 2320,
+        "y": 2280,
         "wires": []
     },
     {
@@ -297,8 +292,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6e888858.a02168",
-        "x": 740,
-        "y": 1320,
+        "x": 700,
+        "y": 1260,
         "wires": []
     },
     {
@@ -327,8 +322,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 460,
-        "y": 1320,
+        "x": 420,
+        "y": 1260,
         "wires": [
             [
                 "b7f6aa26.ae0f58",
@@ -349,8 +344,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 190,
-        "y": 1400,
+        "x": 150,
+        "y": 1340,
         "wires": [
             [
                 "6b93dbcb.d2eb04",
@@ -369,8 +364,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 880,
-        "y": 80,
+        "x": 600,
+        "y": 100,
         "wires": [
             []
         ]
@@ -380,14 +375,14 @@
         "type": "function",
         "z": "8595b6d4.a51f68",
         "name": "",
-        "func": "var puerta=\"\",garaje=\"\";\nif(msg.payload == 00){\n    puerta = \"*CERRADA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == 01){\n    puerta = \"*CERRADA*\";\n    garaje = \"*ABIERTO*\";\n}\nelse if(msg.payload == 10){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == 11){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*ABIERTO*\";\n}\n\nvar t1p = flow.get('tmpuerta');\nvar t1g = flow.get('tmgaraje');\nvar tn = new Date().getTime();\nvar tpmin = Math.round((tn - t1p)/60000);\nvar tgmin = Math.round((tn - t1g)/60000);\nvar thpuerta = Math.floor(tpmin/60);\nvar thgaraje = Math.floor(tgmin/60);\nvar tminpuerta = Math.round(((tpmin/60)- thpuerta)*60);\nvar tmingaraje = Math.round(((tgmin/60)- thgaraje)*60);\n\nvar msj = \"\\u2705*INFORMACION:*\\r\\n\";\nmsj += \"La *PUERTA* está  \"+ puerta +\" desde hace \" + thpuerta + \" horas y \" + tminpuerta +\" Minutos\";\nmsj += \"\\r\\n\";\nmsj += \"El *GARAJE* está  \"+ garaje + \" desde hace \" + thgaraje + \" horas y \" + tmingaraje + \" Minutos\";\nmsj += \"\\r\\n\";\nvar cid = flow.get('chatid');\nmsg.payload = {chatId:cid,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
+        "func": "let puerta=\"\",garaje=\"\";\nif(msg.payload == \"00\"){\n    puerta = \"*CERRADA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == \"01\"){\n    puerta = \"*CERRADA*\";\n    garaje = \"*ABIERTO*\";\n}\nelse if(msg.payload == \"10\"){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == \"11\"){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*ABIERTO*\";\n}\n\nconst t1p = flow.get('tmpuerta');\nconst t1g = flow.get('tmgaraje');\nconst tn = new Date().getTime();\nconst tpmin = Math.round((tn - t1p)/60000);\nconst tgmin = Math.round((tn - t1g)/60000);\nconst thpuerta = Math.floor(tpmin/60);\nconst thgaraje = Math.floor(tgmin/60);\nconst tminpuerta = Math.round(((tpmin/60)- thpuerta)*60);\nconst tmingaraje = Math.round(((tgmin/60)- thgaraje)*60);\n\nlet msj = \"✅*INFORMACION:*\\r\\n\";\nmsj += `La *PUERTA* está ${puerta} desde hace ${thpuerta} hora(s) y ${tminpuerta} Minuto(s)`;\nmsj += \"\\r\\n\";\nmsj += `El *GARAJE* está ${garaje} desde hace ${thgaraje} hora(s) y ${tmingaraje} Minuto(s)`;\nmsj += \"\\r\\n\";\nconst cid = flow.get('chatid');\nmsg.payload = {chatId:cid,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 1440,
+        "x": 420,
+        "y": 1380,
         "wires": [
             [
                 "36864fc3347cf5be",
@@ -409,7 +404,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 170,
+        "x": 150,
         "y": 140,
         "wires": [
             [
@@ -431,7 +426,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 170,
+        "x": 150,
         "y": 80,
         "wires": [
             [
@@ -451,7 +446,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
+        "x": 360,
         "y": 80,
         "wires": [
             []
@@ -469,7 +464,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
+        "x": 360,
         "y": 140,
         "wires": [
             []
@@ -489,8 +484,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 210,
-        "y": 580,
+        "x": 150,
+        "y": 600,
         "wires": [
             [
                 "7fe8166c.659e58"
@@ -511,7 +506,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1490,
+        "x": 1370,
         "y": 400,
         "wires": []
     },
@@ -533,8 +528,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 890,
-        "y": 560,
+        "x": 830,
+        "y": 580,
         "wires": [
             [
                 "6d845807.7cd798"
@@ -553,8 +548,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1320,
-        "y": 560,
+        "x": 1260,
+        "y": 580,
         "wires": [
             [
                 "164f1049.55d4a",
@@ -576,8 +571,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1410,
-        "y": 660,
+        "x": 1350,
+        "y": 680,
         "wires": []
     },
     {
@@ -598,8 +593,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 1130,
-        "y": 620,
+        "x": 1070,
+        "y": 640,
         "wires": [
             [
                 "6d845807.7cd798"
@@ -629,8 +624,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 900,
-        "y": 740,
+        "x": 840,
+        "y": 760,
         "wires": [
             [
                 "4aa8c463.2b2adc",
@@ -657,8 +652,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 910,
-        "y": 620,
+        "x": 850,
+        "y": 640,
         "wires": [
             [
                 "4aa8c463.2b2adc"
@@ -677,8 +672,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1120,
-        "y": 680,
+        "x": 1060,
+        "y": 700,
         "wires": [
             [
                 "164f1049.55d4a",
@@ -729,7 +724,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 1010,
+        "x": 890,
         "y": 260,
         "wires": [
             [
@@ -751,7 +746,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 310,
+        "x": 190,
         "y": 280,
         "wires": [
             [
@@ -772,7 +767,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1460,
+        "x": 1340,
         "y": 260,
         "wires": [
             [
@@ -799,7 +794,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 1290,
+        "x": 1170,
         "y": 320,
         "wires": [
             [
@@ -830,7 +825,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1040,
+        "x": 920,
         "y": 400,
         "wires": [
             [
@@ -858,7 +853,7 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 1010,
+        "x": 890,
         "y": 320,
         "wires": [
             [
@@ -878,7 +873,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1260,
+        "x": 1140,
         "y": 380,
         "wires": [
             [
@@ -914,7 +909,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 740,
+        "x": 620,
         "y": 400,
         "wires": [
             [
@@ -936,7 +931,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
+        "x": 620,
         "y": 480,
         "wires": [
             [
@@ -961,7 +956,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 720,
+        "x": 600,
         "y": 440,
         "wires": [
             [
@@ -996,8 +991,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 660,
-        "y": 700,
+        "x": 600,
+        "y": 720,
         "wires": [
             [
                 "310c0221.6bc6ee",
@@ -1023,8 +1018,8 @@
         "randomUnits": "seconds",
         "drop": false,
         "outputs": 1,
-        "x": 620,
-        "y": 760,
+        "x": 560,
+        "y": 780,
         "wires": [
             [
                 "2453dc24.0b2ce4"
@@ -1043,8 +1038,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
-        "y": 800,
+        "x": 560,
+        "y": 820,
         "wires": [
             [
                 "f119464a56897860"
@@ -1062,8 +1057,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
-        "y": 1220,
+        "x": 420,
+        "y": 1160,
         "wires": [
             [
                 "36864fc3347cf5be"
@@ -1088,7 +1083,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 490,
+        "x": 370,
         "y": 360,
         "wires": [
             [
@@ -1117,7 +1112,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 490,
+        "x": 370,
         "y": 280,
         "wires": [
             [
@@ -1145,8 +1140,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 410,
-        "y": 660,
+        "x": 350,
+        "y": 680,
         "wires": [
             [
                 "2453dc24.0b2ce4",
@@ -1174,8 +1169,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 370,
-        "y": 580,
+        "x": 310,
+        "y": 600,
         "wires": [
             [
                 "4617cc5d1d7c857f"
@@ -1193,8 +1188,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
-        "y": 1000,
+        "x": 440,
+        "y": 940,
         "wires": [
             [
                 "36864fc3347cf5be"
@@ -1215,8 +1210,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6e888858.a02168",
-        "x": 680,
-        "y": 1140,
+        "x": 640,
+        "y": 1080,
         "wires": []
     },
     {
@@ -1238,8 +1233,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 460,
-        "y": 1140,
+        "x": 420,
+        "y": 1080,
         "wires": [
             [
                 "6ff8f66f.63ade8"
@@ -1260,7 +1255,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 150,
-        "y": 1720,
+        "y": 1660,
         "wires": [
             [
                 "d777ce08.77cde",
@@ -1282,25 +1277,23 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 530,
-        "y": 1640,
+        "y": 1580,
         "wires": []
     },
     {
         "id": "aec327ba.c9e758",
         "type": "function",
         "z": "8595b6d4.a51f68",
-        "name": "",
+        "name": "initializeData",
         "func": "",
-        "outputs": 1,
+        "outputs": 0,
         "noerr": 0,
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nconst horaActual = new Date().getTime();\nflow.set('tmpuerta', horaActual)\nflow.set('tm1puerta', horaActual)\nflow.set('tmgaraje', horaActual)\nflow.set('tm1garaje', horaActual)",
         "finalize": "",
         "libs": [],
-        "x": 900,
-        "y": 120,
-        "wires": [
-            []
-        ]
+        "x": 590,
+        "y": 160,
+        "wires": []
     },
     {
         "id": "9c61c2f7.0d51c",
@@ -1308,8 +1301,8 @@
         "z": "8595b6d4.a51f68",
         "name": "INFORMACION RELEVANTE",
         "info": "* a tener en cuenta en caso de desconexion o apagado, los tiempos se manejan en nube.\n* offline no funciona bien con myqtthub\n* ",
-        "x": 660,
-        "y": 100,
+        "x": 600,
+        "y": 60,
         "wires": []
     },
     {
@@ -1332,7 +1325,7 @@
         "to": "",
         "reg": false,
         "x": 420,
-        "y": 1900,
+        "y": 1840,
         "wires": [
             [
                 "588d533d.cd3e5c"
@@ -1354,7 +1347,7 @@
         "expiry": "",
         "broker": "6e888858.a02168",
         "x": 650,
-        "y": 1900,
+        "y": 1840,
         "wires": []
     },
     {
@@ -1365,12 +1358,11 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 370,
-        "y": 1980,
+        "x": 410,
+        "y": 1940,
         "wires": [
             [
-                "fe2c120.7f771f",
-                "b4d07497.b95b48"
+                "fe2c120.7f771f"
             ]
         ]
     },
@@ -1388,7 +1380,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 1980,
+        "y": 2280,
         "wires": []
     },
     {
@@ -1404,8 +1396,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 120,
-        "y": 1960,
+        "x": 160,
+        "y": 1920,
         "wires": [
             [
                 "6d3f9901.d47548"
@@ -1423,8 +1415,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 540,
-        "y": 1980,
+        "x": 580,
+        "y": 1940,
         "wires": [
             []
         ]
@@ -1441,7 +1433,7 @@
         "finalize": "",
         "libs": [],
         "x": 480,
-        "y": 1860,
+        "y": 1800,
         "wires": [
             [
                 "36864fc3347cf5be"
@@ -1465,7 +1457,7 @@
         "drop": false,
         "outputs": 1,
         "x": 340,
-        "y": 1860,
+        "y": 1800,
         "wires": [
             [
                 "13231ad3.1ec145"
@@ -1477,14 +1469,14 @@
         "type": "function",
         "z": "8595b6d4.a51f68",
         "name": "multiple inputs",
-        "func": "context.data = context.data || {};\nswitch (msg.topic) {\n    case \"tele/nodoscix/STATE\":\n        var up = flow.get('upt') || \"0\";\n        var time = flow.get(\"tim\") || \"0\";\n        up = msg.payload.Uptime;\n        time = msg.payload.Time;\n        flow.set('upt',up);\n        flow.set('tim',time);\n        context.data.upp = up\n        context.data.tme = time\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO2\":\n        context.data.inf1 = msg.payload.Info2.IPAddress;\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO3\":\n        context.data.inf2 = msg.payload.Info3.RestartReason;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.inf1 != null && context.data.inf2 != null && context.data.upp != null && context.data.tme != null) {\n    var msj = \"Hora: \"+ context.data.tme +\"\\r\\nUptime: \" + context.data.upp +\"\\r\\nIP: \" + context.data.inf1 +\"\\r\\nRestart Reason: \" + context.data.inf2;\n    context.data=null;\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2));\n    msg = {payload: {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}}};\n    return msg;\n}",
+        "func": "context.data = context.data || {};\nswitch (msg.topic) {\n    case \"tele/nodoscix/STATE\":\n        var up = flow.get('upt') || \"0\";\n        var time = flow.get(\"tim\") || \"0\";\n        up = msg.payload.Uptime;\n        time = msg.payload.Time;\n        flow.set('upt',up);\n        flow.set('tim',time);\n        context.data.upp = up\n        context.data.tme = time\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO2\":\n        context.data.inf1 = msg.payload.Info2.IPAddress;\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO3\":\n        context.data.inf2 = msg.payload.Info3.RestartReason;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.inf1 != null && context.data.inf2 != null && context.data.upp != null && context.data.tme != null) {\n    let msj = \"🔵INIT\\r\\n\"\n    msj += `Hora: ${context.data.tme} \\r\\nUptime: ${context.data.upp}\\r\\nIP:${context.data.inf1}\\r\\nRestart Reason: ${context.data.inf2}`;\n    context.data=null;\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {\n        payload: {\n            chatId:id,\n            type:\"message\",\n            content:msj,\n            options:{\n                parse_mode:\"Markdown\"}\n        }\n    };\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 560,
-        "y": 2040,
+        "x": 580,
+        "y": 2000,
         "wires": [
             [
                 "b4d07497.b95b48",
@@ -1505,8 +1497,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 130,
-        "y": 2100,
+        "x": 150,
+        "y": 2060,
         "wires": [
             [
                 "c117387f.c1ee78"
@@ -1521,8 +1513,8 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 370,
-        "y": 2040,
+        "x": 390,
+        "y": 2000,
         "wires": [
             [
                 "6b84058d.233b8c",
@@ -1535,14 +1527,14 @@
         "type": "function",
         "z": "8595b6d4.a51f68",
         "name": "LWT OFFLINE",
-        "func": "if(msg.payload == \"Offline\"){\n    var tmp = new Date();\n    var msj = \"Hora Desconexion: \"+ tmp +\"\\r\\nEl Nodo se ha *DESCONECTADO* \";\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {payload: {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}}};\n    return msg;\n}",
+        "func": "if(msg.payload == \"Offline\" ){\n    const horaActual = new Date();\n    flow.set(\"isOnline\",false);\n    const msj = `🟠*DESCONEXION*:\nHora Desconexion: ${horaActual.toLocaleString()}\nEl Nodo se ha *DESCONECTADO*`;\n    flow.set(\"offlineTime\", horaActual);\n    const telegramId = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {\n        payload: {\n            chatId: telegramId,\n            type: \"message\",\n            content: msj,\n            options: {\n                parse_mode: \"Markdown\"\n            }\n        }\n    };\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 1720,
+        "y": 1660,
         "wires": [
             [
                 "39b3aceb.a9e774",
@@ -1568,7 +1560,7 @@
         "topic": "topic",
         "outputs": 1,
         "x": 350,
-        "y": 1720,
+        "y": 1660,
         "wires": [
             [
                 "a31a69eb.04e658"
@@ -1588,8 +1580,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 130,
-        "y": 2000,
+        "x": 170,
+        "y": 1960,
         "wires": [
             [
                 "6d3f9901.d47548"
@@ -1609,8 +1601,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 130,
-        "y": 2140,
+        "x": 150,
+        "y": 2100,
         "wires": [
             [
                 "c117387f.c1ee78"
@@ -1630,8 +1622,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 130,
-        "y": 2180,
+        "x": 150,
+        "y": 2140,
         "wires": [
             [
                 "c117387f.c1ee78"
@@ -1643,14 +1635,14 @@
         "type": "function",
         "z": "8595b6d4.a51f68",
         "name": "LWT ONLINE",
-        "func": "if(msg.payload == \"Online\"){\n    var tmp = new Date();\n    var msj = \"Hora Desconexion: \"+ tmp +\"\\r\\nEl Nodo se ha *CONECTADO* \";\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {payload: {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}}};\n    return msg;\n}",
+        "func": "if(msg.payload == \"Online\" && flow.get(\"isOnline\") === false){\n    const nowTime = new Date();\n    flow.set(\"onlineTime\", nowTime);\n    flow.set(\"isOnline\", true);\n    const offlineTime = flow.get(\"offlineTime\");\n    const downTimeMili = nowTime.getTime() - offlineTime.getTime(); \n    const downTimeMinutes = Math.round(downTimeMili/60000);\n    const downTimeHours = Math.floor(downTimeMinutes/60);\n    const msgBody = `🟢*CONEXION*:\nHora Conexion: ${nowTime.toLocaleString()}\nDowntime: *${downTimeHours}* Horas y *${downTimeMinutes}* Minutos`;\n    \n    const telegramId = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {\n        payload: {\n            chatId: telegramId,\n            type: \"message\",\n            content: msgBody,\n            options: {\n                parse_mode: \"Markdown\"\n            }\n        }\n    };\n    \n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 540,
-        "y": 1760,
+        "y": 1700,
         "wires": [
             [
                 "36864fc3347cf5be"
@@ -1670,7 +1662,7 @@
         "removeregexcommand": false,
         "outputs": 1,
         "x": 160,
-        "y": 1580,
+        "y": 1520,
         "wires": [
             [
                 "d67670d.d1f309"
@@ -1693,7 +1685,7 @@
         "useregex": false,
         "removeregexcommand": false,
         "outputs": 1,
-        "x": 310,
+        "x": 190,
         "y": 360,
         "wires": [
             [
@@ -1713,8 +1705,8 @@
         "useregex": false,
         "removeregexcommand": false,
         "outputs": 1,
-        "x": 210,
-        "y": 1320,
+        "x": 170,
+        "y": 1260,
         "wires": [
             [
                 "ffcd40ad.8952b",
@@ -1738,8 +1730,8 @@
         "useregex": false,
         "removeregexcommand": false,
         "outputs": 1,
-        "x": 230,
-        "y": 660,
+        "x": 170,
+        "y": 680,
         "wires": [
             [
                 "843e6814.3366a8"
@@ -1758,8 +1750,8 @@
         "useregex": false,
         "removeregexcommand": false,
         "outputs": 1,
-        "x": 210,
-        "y": 1140,
+        "x": 170,
+        "y": 1080,
         "wires": [
             [
                 "2b1fec0b.6be214",
@@ -1783,7 +1775,7 @@
         "useregex": false,
         "removeregexcommand": false,
         "outputs": 1,
-        "x": 300,
+        "x": 180,
         "y": 440,
         "wires": [
             [
@@ -1807,8 +1799,8 @@
         "useregex": false,
         "removeregexcommand": false,
         "outputs": 1,
-        "x": 240,
-        "y": 780,
+        "x": 180,
+        "y": 800,
         "wires": [
             [
                 "2453dc24.0b2ce4"
@@ -1830,8 +1822,8 @@
         "useregex": false,
         "removeregexcommand": false,
         "outputs": 1,
-        "x": 220,
-        "y": 1000,
+        "x": 180,
+        "y": 940,
         "wires": [
             [
                 "ce90a758.fd0b78"
@@ -1851,7 +1843,7 @@
         "removeregexcommand": false,
         "outputs": 1,
         "x": 160,
-        "y": 1900,
+        "y": 1840,
         "wires": [
             [
                 "41e9e8.30465618",
