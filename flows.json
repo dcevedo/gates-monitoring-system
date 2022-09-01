@@ -254,7 +254,7 @@
         "scope": null,
         "uncaught": false,
         "x": 120,
-        "y": 2280,
+        "y": 2380,
         "wires": [
             [
                 "4d6364aa.17376c"
@@ -275,7 +275,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 2280,
+        "y": 2380,
         "wires": []
     },
     {
@@ -1359,7 +1359,7 @@
         "action": "",
         "pretty": false,
         "x": 410,
-        "y": 1940,
+        "y": 2020,
         "wires": [
             [
                 "fe2c120.7f771f"
@@ -1380,7 +1380,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 770,
-        "y": 2280,
+        "y": 2380,
         "wires": []
     },
     {
@@ -1397,7 +1397,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 160,
-        "y": 1920,
+        "y": 2000,
         "wires": [
             [
                 "6d3f9901.d47548"
@@ -1408,15 +1408,15 @@
         "id": "fe2c120.7f771f",
         "type": "function",
         "z": "8595b6d4.a51f68",
-        "name": "",
-        "func": "if(msg.topic ==\"stat/nodoscix/STATUS5\"){\n    var ip1 = flow.get('ip1') || \"0\";\n    ip1 = msg.payload.StatusNET.IPAddress;\n    flow.set('ip1',ip1);\n    msg.payload = {ip:ip1};\n    return msg;\n}\nelse if(msg.topic ==\"stat/nodoscix/STATUS11\"){\n    var upt = flow.get('upt') || \"0\";\n    var time = flow.get(\"tim\") || \"0\";\n    upt = msg.payload.StatusSTS.Uptime;\n    time = msg.payload.StatusSTS.Time;\n    flow.set('upt',upt);\n    flow.set('tim',time);\n    msg.payload = {uptime:upt,timeup:time};\n    return msg;\n}",
+        "name": "Status0",
+        "func": "switch(msg.topic){\n    case(\"stat/nodoscix/STATUS5\"):\n        const ip = msg.payload.StatusNET.IPAddress;\n        flow.set('ip',ip);\n        msg = null;\n        break;\n    case (\"stat/nodoscix/STATUS11\"):\n        const uptime = msg.payload.StatusSTS.Uptime;\n        const time = msg.payload.StatusSTS.Time;\n        const ssid = msg.payload.StatusSTS.Wifi.SSId;\n        flow.set('uptime',uptime);\n        flow.set('time',time);\n        flow.set('ssid', ssid);\n        msg = null;\n        break;\n    case(\"stat/nodoscix/STATUS1\"):\n        const restartReason = msg.payload.StatusPRM.RestartReason;\n        flow.set('restartReason', restartReason);\n        msg = null;\n        break;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 1940,
+        "y": 2020,
         "wires": [
             []
         ]
@@ -1425,14 +1425,14 @@
         "id": "13231ad3.1ec145",
         "type": "function",
         "z": "8595b6d4.a51f68",
-        "name": "",
-        "func": "var ip1 = flow.get('ip1') || \"0\";\nvar upt = flow.get('upt') || \"0\";\nvar tim = flow.get('tim') || \"0\";\nvar msj = \"Hora actualizacion: \"+ tim +\"\\r\\nIP: \" + ip1 + \"\\r\\nUptime: \" + upt ;\nmsg.payload.content = msj;\nreturn msg;",
+        "name": "State",
+        "func": "const ip = (flow.get('ip') || \"0\");\nconst ssid = (flow.get('ssid') || \"0\");\nconst uptime = flow.get('uptime') || \"0\";\nconst time = (flow.get('time') || \"0\");\nconst restartReason = flow.get(\"restartReason\") || \"0\";\nlet msj = `__*Hora actualizacion*__: ${time}\\r\\n__*SSID*__: ${ssid}\\r\\n`;\nmsj += `__*IP*__: ${ip}\\r\\n__*Uptime*__: ${uptime}\\r\\n`;\nmsj += `__*Restart Reason*__: ${restartReason}`\n\nconst parsedmsj = msj\n    .replaceAll(\".\", \"\\\\.\")\n    .replaceAll(\"-\", \"\\\\-\");\n\nmsg.payload.options = { parse_mode: \"MarkdownV2\" };\nmsg.payload.content = parsedmsj;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 480,
+        "x": 470,
         "y": 1800,
         "wires": [
             [
@@ -1468,15 +1468,15 @@
         "id": "6b84058d.233b8c",
         "type": "function",
         "z": "8595b6d4.a51f68",
-        "name": "multiple inputs",
-        "func": "context.data = context.data || {};\nswitch (msg.topic) {\n    case \"tele/nodoscix/STATE\":\n        var up = flow.get('upt') || \"0\";\n        var time = flow.get(\"tim\") || \"0\";\n        up = msg.payload.Uptime;\n        time = msg.payload.Time;\n        flow.set('upt',up);\n        flow.set('tim',time);\n        context.data.upp = up\n        context.data.tme = time\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO2\":\n        context.data.inf1 = msg.payload.Info2.IPAddress;\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO3\":\n        context.data.inf2 = msg.payload.Info3.RestartReason;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.inf1 != null && context.data.inf2 != null && context.data.upp != null && context.data.tme != null) {\n    let msj = \"🔵INIT\\r\\n\"\n    msj += `Hora: ${context.data.tme} \\r\\nUptime: ${context.data.upp}\\r\\nIP:${context.data.inf1}\\r\\nRestart Reason: ${context.data.inf2}`;\n    context.data=null;\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {\n        payload: {\n            chatId:id,\n            type:\"message\",\n            content:msj,\n            options:{\n                parse_mode:\"Markdown\"}\n        }\n    };\n    return msg;\n}",
+        "name": "INIT",
+        "func": "context.data = context.data || {};\nswitch (msg.topic) {\n    case \"tele/nodoscix/STATE\":\n        const up = msg.payload.Uptime;\n        const time = msg.payload.Time;\n        context.data.Uptime = up\n        context.data.Time = time.replaceAll(\"-\",\"\\\\-\");\n        node.warn(context.data.Time);\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO2\":\n        const ip = msg.payload.Info2.IPAddress\n        context.data.IP = ip.replaceAll(\".\", \"\\\\.\");\n        node.warn(context.data.IP);\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO3\":\n        context.data.RestartReason = msg.payload.Info3.RestartReason;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.Uptime && context.data.IP && context.data.RestartReason){\n    let msj = \"🔵*INIT*\\r\\n\"\n    msj += `__*Hora*__: ${context.data.Time} \\r\\n__*Uptime*__: ${context.data.Uptime}\\r\\n__*IP*__: ${context.data.IP}\\r\\n__*Restart Reason*__: ${context.data.RestartReason}`;\n    node.warn(msj);\n    context.data=null;\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {\n        payload: {\n            chatId:id,\n            type:\"message\",\n            content:msj,\n            options:{\n                parse_mode:\"MarkdownV2\"}\n        }\n    };\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
-        "y": 2000,
+        "x": 570,
+        "y": 2100,
         "wires": [
             [
                 "b4d07497.b95b48",
@@ -1498,7 +1498,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 150,
-        "y": 2060,
+        "y": 2160,
         "wires": [
             [
                 "c117387f.c1ee78"
@@ -1514,7 +1514,7 @@
         "action": "",
         "pretty": false,
         "x": 390,
-        "y": 2000,
+        "y": 2100,
         "wires": [
             [
                 "6b84058d.233b8c",
@@ -1581,7 +1581,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 170,
-        "y": 1960,
+        "y": 2040,
         "wires": [
             [
                 "6d3f9901.d47548"
@@ -1602,7 +1602,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 150,
-        "y": 2100,
+        "y": 2200,
         "wires": [
             [
                 "c117387f.c1ee78"
@@ -1623,7 +1623,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 150,
-        "y": 2140,
+        "y": 2240,
         "wires": [
             [
                 "c117387f.c1ee78"
@@ -1835,14 +1835,17 @@
         "type": "telegram command",
         "z": "8595b6d4.a51f68",
         "name": "",
-        "command": "/state@SantaCeciliaBot",
+        "command": "/state",
+        "description": "",
+        "registercommand": false,
+        "language": "",
         "bot": "85814c6a.5b74c",
         "strict": false,
         "hasresponse": false,
         "useregex": false,
         "removeregexcommand": false,
         "outputs": 1,
-        "x": 160,
+        "x": 110,
         "y": 1840,
         "wires": [
             [
@@ -1929,5 +1932,26 @@
         "x": 2570,
         "y": 600,
         "wires": []
+    },
+    {
+        "id": "34141c87479d9471",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "topic": "stat/nodoscix/STATUS1",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 1960,
+        "wires": [
+            [
+                "6d3f9901.d47548"
+            ]
+        ]
     }
 ]
