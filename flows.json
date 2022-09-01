@@ -26,7 +26,7 @@
             "b8fb60d8.ee7f3"
         ],
         "x": 34,
-        "y": 39,
+        "y": 19,
         "w": 412,
         "h": 142
     },
@@ -218,25 +218,6 @@
         "h": 162
     },
     {
-        "id": "1c62b5e9c7aad416",
-        "type": "group",
-        "z": "8595b6d4.a51f68",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [],
-        "x": null,
-        "y": null,
-        "w": 40,
-        "h": 40
-    },
-    {
         "id": "963115cd91677219",
         "type": "group",
         "z": "8595b6d4.a51f68",
@@ -319,6 +300,51 @@
         "h": 342
     },
     {
+        "id": "76fc0a591b5308f6",
+        "type": "group",
+        "z": "8595b6d4.a51f68",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "6507542a.07ee9c",
+            "4d6364aa.17376c",
+            "aec327ba.c9e758",
+            "9c61c2f7.0d51c",
+            "3c7ac65b882772b9",
+            "2d3e46a51a73f6bc"
+        ],
+        "x": 474,
+        "y": 19,
+        "w": 632,
+        "h": 162
+    },
+    {
+        "id": "1c62b5e9c7aad416",
+        "type": "group",
+        "z": "8595b6d4.a51f68",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [],
+        "x": null,
+        "y": null,
+        "w": 40,
+        "h": 40
+    },
+    {
         "id": "4617cc5d1d7c857f",
         "type": "junction",
         "z": "8595b6d4.a51f68",
@@ -331,16 +357,6 @@
                 "7bb10696.ec2f18",
                 "7a2a2abb.45d084"
             ]
-        ]
-    },
-    {
-        "id": "36864fc3347cf5be",
-        "type": "junction",
-        "z": "8595b6d4.a51f68",
-        "x": 1900,
-        "y": 1540,
-        "wires": [
-            []
         ]
     },
     {
@@ -587,6 +603,7 @@
         "id": "6507542a.07ee9c",
         "type": "catch",
         "z": "8595b6d4.a51f68",
+        "g": "76fc0a591b5308f6",
         "name": "",
         "scope": null,
         "uncaught": false,
@@ -602,6 +619,7 @@
         "id": "4d6364aa.17376c",
         "type": "debug",
         "z": "8595b6d4.a51f68",
+        "g": "76fc0a591b5308f6",
         "name": "catch",
         "active": true,
         "tosidebar": true,
@@ -665,7 +683,8 @@
         "y": 1260,
         "wires": [
             [
-                "b7f6aa26.ae0f58"
+                "b7f6aa26.ae0f58",
+                "77c80ccd.9b2f04"
             ]
         ]
     },
@@ -702,7 +721,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 600,
+        "x": 2480,
         "y": 100,
         "wires": [
             []
@@ -714,7 +733,7 @@
         "z": "8595b6d4.a51f68",
         "g": "ebda3edd388e326b",
         "name": "sendState",
-        "func": "let puerta=\"\",garaje=\"\";\nif(msg.payload == \"00\"){\n    puerta = \"*CERRADA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == \"01\"){\n    puerta = \"*CERRADA*\";\n    garaje = \"*ABIERTO*\";\n}\nelse if(msg.payload == \"10\"){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == \"11\"){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*ABIERTO*\";\n}\n\nconst t1p = flow.get('tmpuerta');\nconst t1g = flow.get('tmgaraje');\nconst tn = new Date().getTime();\nconst tpmin = Math.round((tn - t1p)/60000);\nconst tgmin = Math.round((tn - t1g)/60000);\nconst thpuerta = Math.floor(tpmin/60);\nconst thgaraje = Math.floor(tgmin/60);\nconst tminpuerta = Math.round(((tpmin/60)- thpuerta)*60);\nconst tmingaraje = Math.round(((tgmin/60)- thgaraje)*60);\n\nlet msj = \"✅*INFORMACION:*\\r\\n\";\nmsj += `La *PUERTA* está ${puerta} desde hace ${thpuerta} hora(s) y ${tminpuerta} Minuto(s)`;\nmsj += \"\\r\\n\";\nmsj += `El *GARAJE* está ${garaje} desde hace ${thgaraje} hora(s) y ${tmingaraje} Minuto(s)`;\nmsj += \"\\r\\n\";\nconst cid = flow.get('chatid');\nmsg.payload = {chatId:cid,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
+        "func": "let puerta=\"\",garaje=\"\";\nif(msg.payload == \"00\"){\n    puerta = \"*CERRADA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == \"01\"){\n    puerta = \"*CERRADA*\";\n    garaje = \"*ABIERTO*\";\n}\nelse if(msg.payload == \"10\"){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == \"11\"){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*ABIERTO*\";\n}\n\nconst t1p = flow.get('time1Puerta');\nconst t1g = flow.get('time1Garaje');\nconst tn = new Date().getTime();\nconst tpmin = Math.round((tn - t1p)/60000);\nconst tgmin = Math.round((tn - t1g)/60000);\nconst thpuerta = Math.floor(tpmin/60);\nconst thgaraje = Math.floor(tgmin/60);\nconst tminpuerta = Math.round(((tpmin/60)- thpuerta)*60);\nconst tmingaraje = Math.round(((tgmin/60)- thgaraje)*60);\n\nlet msj = \"✅*INFORMACION:*\\r\\n\";\nmsj += `La *PUERTA* está ${puerta} desde hace ${thpuerta} hora(s) y ${tminpuerta} Minuto(s)`;\nmsj += \"\\r\\n\";\nmsj += `El *GARAJE* está ${garaje} desde hace ${thgaraje} hora(s) y ${tmingaraje} Minuto(s)`;\nmsj += \"\\r\\n\";\nconst cid = flow.get('chatid');\nmsg.payload = {chatId:cid,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -743,7 +762,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 150,
-        "y": 140,
+        "y": 120,
         "wires": [
             [
                 "b8fb60d8.ee7f3"
@@ -765,7 +784,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 150,
-        "y": 80,
+        "y": 60,
         "wires": [
             [
                 "96264002.9a23d"
@@ -778,17 +797,15 @@
         "z": "8595b6d4.a51f68",
         "g": "63c3d7ac.e67068",
         "name": "",
-        "func": "var est1 = flow.get(\"estpuerta\") || 0;\nvar est = msg.payload;\nflow.set(\"estpuerta\",est);\nif(est1 != est){\n    var tm = new Date().getTime()\n    var tm1 = flow.get('tmpuerta') || 0;\n    flow.set('tmpuerta',tm)\n    flow.set('tm1puerta',tm1)\n    msg.payload = {Time:tm, puerta:msg.payload}\n    return msg;\n}",
-        "outputs": 1,
+        "func": "const lastState = flow.get(\"statePuerta\") || 0;\nconst state = msg.payload;\nflow.set(\"statePuerta\",state);\nif(lastState != state){\n    const time1 = new Date().getTime()\n    const time2 = flow.get('time1Puerta') || 0;\n    flow.set('time1Puerta',time1);\n    flow.set('time2Puerta',time2);\n    msg = null;\n}",
+        "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 80,
-        "wires": [
-            []
-        ]
+        "y": 60,
+        "wires": []
     },
     {
         "id": "b8fb60d8.ee7f3",
@@ -796,17 +813,15 @@
         "z": "8595b6d4.a51f68",
         "g": "63c3d7ac.e67068",
         "name": "",
-        "func": "var est1 = flow.get(\"estgaraje\") || 0;\nvar est = msg.payload;\nflow.set(\"estgaraje\",est);\nif(est1 != est){\n    var tm = new Date().getTime()\n    var tm1 = flow.get('tmgaraje') || 0;\n    flow.set('tmgaraje',tm)\n    flow.set('tm1garaje',tm1)\n    msg.payload = {Time:tm, garaje:msg.payload}\n    return msg;\n}",
-        "outputs": 1,
+        "func": "const lastState = flow.get(\"stateGaraje\") || 0;\nconst state = msg.payload;\nflow.set(\"stateGaraje\",state);\nif(lastState != state){\n    const time1 = new Date().getTime()\n    const time2 = flow.get('time1Garaje') || 0;\n    flow.set('time1Garaje',time1)\n    flow.set('time2Garaje',time2)\n    msg = null;\n}",
+        "outputs": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 360,
-        "y": 140,
-        "wires": [
-            []
-        ]
+        "y": 120,
+        "wires": []
     },
     {
         "id": "fef1a28e.fe6f4",
@@ -879,14 +894,14 @@
         "type": "function",
         "z": "8595b6d4.a51f68",
         "g": "7fccb777c862da50",
-        "name": "",
-        "func": "var al = 1;\nflow.set('algaraje',al);\nvar t1p = flow.get('tmgaraje');\nvar tn = new Date().getTime();\nvar tpuerta = Math.round((tn - t1p)/60000);\n\nvar msj = \"\\u26d4*ALARMA:*\\u26d4\\r\\n\"\nmsj += \"El *GARAJE* ha estado *ABIERTO* durante \" + tpuerta + \" Minutos\";\nmsj += \"\\r\\n\";\n\nconst id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\nmsg.payload = {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
+        "name": "garageOnAlarm",
+        "func": "var al = 1;\nflow.set('algaraje',al);\nvar t1p = flow.get('time1Garaje');\nvar tn = new Date().getTime();\nvar tpuerta = Math.round((tn - t1p)/60000);\n\nvar msj = \"⛔️*ALARMA:*⛔️\\r\\n\"\nmsj += \"El *GARAJE* ha estado *ABIERTO* durante \" + tpuerta + \" Minutos\";\nmsj += \"\\r\\n\";\n\nconst id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\nmsg.payload = {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1280,
+        "x": 1300,
         "y": 560,
         "wires": [
             [
@@ -943,7 +958,7 @@
         "type": "switch",
         "z": "8595b6d4.a51f68",
         "g": "7fccb777c862da50",
-        "name": "cerrada",
+        "name": "garageClosed",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -961,7 +976,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 840,
+        "x": 860,
         "y": 760,
         "wires": [
             [
@@ -1002,14 +1017,14 @@
         "type": "function",
         "z": "8595b6d4.a51f68",
         "g": "7fccb777c862da50",
-        "name": "",
-        "func": "var al = flow.get('algaraje') || 0;\nif(al == 1){\n    al = 0;\n    flow.set('algaraje',al);\n    var t1p = flow.get('tm1garaje');\n    var tn = new Date().getTime();\n    var t = Math.round((tn - t1p)/60000);\n    \n    var msj = \"\\u2705*INFORMACION:*\\r\\n\"\n    msj += \"El *GARAJE* fue *CERRADO* despues de \" + t + \" Minutos abierto\";\n    msj += \"\\r\\n\";\n    \n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\n    msg.payload = {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\n    return msg;\n}",
+        "name": "garageAfterClose",
+        "func": "var al = flow.get('algaraje') || 0;\nif(al == 1){\n    al = 0;\n    flow.set('algaraje',al);\n    var t1p = flow.get('time2Garaje');\n    var tn = new Date().getTime();\n    var t = Math.round((tn - t1p)/60000);\n    \n    var msj = \"🟡*CERRADO EN ALARMA:*\\r\\n\"\n    msj += \"El *GARAJE* fue *CERRADO* despues de \" + t + \" Minutos abierto\";\n    msj += \"\\r\\n\";\n    \n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\n    msg.payload = {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1280,
+        "x": 1310,
         "y": 760,
         "wires": [
             [
@@ -1097,7 +1112,7 @@
         "z": "8595b6d4.a51f68",
         "g": "963115cd91677219",
         "name": "doorOnAlarm",
-        "func": "var al = 1;\nflow.set('alpuerta',al);\nvar t1p = flow.get('tmpuerta');\nvar tn = new Date().getTime();\nvar tpuerta = Math.round((tn - t1p)/60000);\n\nvar msj = \"\\u26d4*ALARMA:*\\u26d4\\r\\n\"\nmsj += \"La *PUERTA* ha estado *ABIERTA* durante \" + tpuerta + \" Minutos\";\nmsj += \"\\r\\n\";\n\nconst id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\n\nmsg.payload = {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
+        "func": "var al = 1;\nflow.set('alpuerta',al);\nvar t1p = flow.get('time1Puerta');\nvar tn = new Date().getTime();\nvar tpuerta = Math.round((tn - t1p)/60000);\n\nvar msj = \"⛔️*ALARMA:*⛔️\\r\\n\"\nmsj += \"La *PUERTA* ha estado *ABIERTA* durante \" + tpuerta + \" Minutos\";\nmsj += \"\\r\\n\";\n\nconst id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\n\nmsg.payload = {chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1142,7 +1157,7 @@
         "type": "switch",
         "z": "8595b6d4.a51f68",
         "g": "963115cd91677219",
-        "name": "closed",
+        "name": "doorClosed",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -1155,7 +1170,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 870,
+        "x": 890,
         "y": 400,
         "wires": [
             [
@@ -1196,7 +1211,7 @@
         "z": "8595b6d4.a51f68",
         "g": "963115cd91677219",
         "name": "doorAfterClose",
-        "func": "var al = flow.get('alpuerta') || 0;\nif(al == 1){\n    al = 0;\n    flow.set('alpuerta',al);\n    var t1p = flow.get('tm1puerta');\n    var tn = new Date().getTime();\n    var t = Math.round((tn - t1p)/60000);\n    \n    var msj = \"\\u2705*INFORMACION:*\\r\\n\"\n    msj += \"La *PUERTA* fue *CERRADA* despues de \" + t + \" Minutos abierta\";\n    msj += \"\\r\\n\";\n\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\n    \n    msg.payload = { chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\n    return msg;\n}",
+        "func": "var al = flow.get('alpuerta') || 0;\nif(al == 1){\n    al = 0;\n    flow.set('alpuerta',al);\n    var t1p = flow.get('time2Puerta');\n    var tn = new Date().getTime();\n    var t = Math.round((tn - t1p)/60000);\n    \n    var msj = \"🟡*CERRADA EN ALARMA:*\\r\\n\"\n    msj += \"La *PUERTA* fue *CERRADA* despues de \" + t + \" Minutos abierta\";\n    msj += \"\\r\\n\";\n\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 1));\n    \n    msg.payload = { chatId:id,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1215,7 +1230,7 @@
         "type": "change",
         "z": "8595b6d4.a51f68",
         "g": "963115cd91677219",
-        "name": "",
+        "name": "resetDoorAlarm",
         "rules": [
             {
                 "t": "set",
@@ -1297,7 +1312,7 @@
         "type": "change",
         "z": "8595b6d4.a51f68",
         "g": "7fccb777c862da50",
-        "name": "",
+        "name": "resetDoorAlarm",
         "rules": [
             {
                 "t": "set",
@@ -1359,14 +1374,14 @@
         "type": "function",
         "z": "8595b6d4.a51f68",
         "g": "7fccb777c862da50",
-        "name": "Respueta info",
+        "name": "garagePermission",
         "func": "var msj = \"Se ha activado la *_apertura del garaje sin alarma_*, para desactivar por favor *_cerrar el garaje_*\\r\\n\";\nmsg.payload.options = {parse_mode : \"MarkdownV2\"};\nmsg.payload.content = msj;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1280,
+        "x": 1290,
         "y": 820,
         "wires": [
             [
@@ -1380,7 +1395,7 @@
         "z": "8595b6d4.a51f68",
         "g": "ce445830e294e73e",
         "name": "Respueta info",
-        "func": "var en = flow.get('enabled') || 1;\nen=1;\nflow.set('enabled',en);\nvar msj = \"\\u2705*INFORMACION:*\\r\\n\";\nmsj += \"Se ha *_ACTIVADO el sistema de sensores_*\\r\\n\";\nmsg.payload.options = {parse_mode : \"MarkdownV2\"};\nmsg.payload.content = msj;\nreturn msg;",
+        "func": "var en = flow.get('enabled') || 1;\nen=1;\nflow.set('enabled',en);\nvar msj = \"✅*INFORMACION:*\\r\\n\";\nmsj += \"Se ha *_ACTIVADO el sistema de sensores_*\\r\\n\";\nmsg.payload.options = {parse_mode : \"MarkdownV2\"};\nmsg.payload.content = msj;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1452,7 +1467,7 @@
         "type": "switch",
         "z": "8595b6d4.a51f68",
         "g": "7fccb777c862da50",
-        "name": "",
+        "name": "enabled",
         "property": "enabled",
         "propertyType": "flow",
         "rules": [
@@ -1465,7 +1480,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 350,
+        "x": 360,
         "y": 680,
         "wires": [
             [
@@ -1479,7 +1494,7 @@
         "type": "switch",
         "z": "8595b6d4.a51f68",
         "g": "7fccb777c862da50",
-        "name": "",
+        "name": "enabled",
         "property": "enabled",
         "propertyType": "flow",
         "rules": [
@@ -1492,7 +1507,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 310,
+        "x": 320,
         "y": 600,
         "wires": [
             [
@@ -1506,7 +1521,7 @@
         "z": "8595b6d4.a51f68",
         "g": "ce445830e294e73e",
         "name": "Respueta info",
-        "func": "var en = flow.get('enabled') || 0;\nen=0;\nflow.set('enabled',en);\nvar msj = \"\\u2705*INFORMACION:*\\r\\n\";\nmsj += \"Se ha *_DESACTIVADO el sistema de sensores_*\\r\\n\";\nmsg.payload.options = {parse_mode : \"MarkdownV2\"};\nmsg.payload.content = msj;\nreturn msg;",
+        "func": "var en = flow.get('enabled') || 0;\nen=0;\nflow.set('enabled',en);\nvar msj = \"✅*INFORMACION:*\\r\\n\";\nmsj += \"Se ha *_DESACTIVADO el sistema de sensores_*\\r\\n\";\nmsg.payload.options = {parse_mode : \"MarkdownV2\"};\nmsg.payload.content = msj;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1594,24 +1609,26 @@
         "id": "aec327ba.c9e758",
         "type": "function",
         "z": "8595b6d4.a51f68",
+        "g": "76fc0a591b5308f6",
         "name": "initializeData",
         "func": "",
         "outputs": 0,
         "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\nconst horaActual = new Date().getTime();\nflow.set('tmpuerta', horaActual)\nflow.set('tm1puerta', horaActual)\nflow.set('tmgaraje', horaActual)\nflow.set('tm1garaje', horaActual)\nflow.set('isOnline', true)",
+        "initialize": "const horaActual = new Date().getTime();\nflow.set('time1Puerta', horaActual)\nflow.set('time2Puerta', horaActual)\nflow.set('time1Garaje', horaActual)\nflow.set('time2Garaje', horaActual)\nflow.set('isOnline', true)\nmsg = null;",
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 160,
+        "y": 140,
         "wires": []
     },
     {
         "id": "9c61c2f7.0d51c",
         "type": "comment",
         "z": "8595b6d4.a51f68",
+        "g": "76fc0a591b5308f6",
         "name": "INFORMACION RELEVANTE",
         "info": "* a tener en cuenta en caso de desconexion o apagado, los tiempos se manejan en nube.\n* offline no funciona bien con myqtthub\n* ",
-        "x": 600,
+        "x": 620,
         "y": 60,
         "wires": []
     },
@@ -1768,7 +1785,7 @@
         "z": "8595b6d4.a51f68",
         "g": "95f1c954a3dea647",
         "name": "INIT",
-        "func": "context.data = context.data || {};\nswitch (msg.topic) {\n    case \"tele/nodoscix/STATE\":\n        const up = msg.payload.Uptime;\n        const time = msg.payload.Time;\n        context.data.Uptime = up\n        context.data.Time = time.replaceAll(\"-\",\"\\\\-\");\n        node.warn(context.data.Time);\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO2\":\n        const ip = msg.payload.Info2.IPAddress\n        context.data.IP = ip.replaceAll(\".\", \"\\\\.\");\n        node.warn(context.data.IP);\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO3\":\n        context.data.RestartReason = msg.payload.Info3.RestartReason;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.Uptime && context.data.IP && context.data.RestartReason){\n    let msj = \"🔵*INIT*\\r\\n\"\n    msj += `__*Hora*__: ${context.data.Time} \\r\\n__*Uptime*__: ${context.data.Uptime}\\r\\n__*IP*__: ${context.data.IP}\\r\\n__*Restart Reason*__: ${context.data.RestartReason}`;\n    node.warn(msj);\n    context.data=null;\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {\n        payload: {\n            chatId:id,\n            type:\"message\",\n            content:msj,\n            options:{\n                parse_mode:\"MarkdownV2\"}\n        }\n    };\n    return msg;\n}",
+        "func": "context.data = context.data || {};\nswitch (msg.topic) {\n    case \"tele/nodoscix/STATE\":\n        const up = msg.payload.Uptime;\n        const time = msg.payload.Time;\n        context.data.Uptime = up\n        context.data.Time = time.replaceAll(\"-\",\"\\\\-\");\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO2\":\n        const ip = msg.payload.Info2.IPAddress\n        context.data.IP = ip.replaceAll(\".\", \"\\\\.\");\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO3\":\n        context.data.RestartReason = msg.payload.Info3.RestartReason;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.Uptime && context.data.IP && context.data.RestartReason){\n    let msj = \"🔵*INIT*\\r\\n\"\n    msj += `__*Hora*__: ${context.data.Time} \\r\\n__*Uptime*__: ${context.data.Uptime}\\r\\n__*IP*__: ${context.data.IP}\\r\\n__*Restart Reason*__: ${context.data.RestartReason}`;\n    context.data={};\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {\n        payload: {\n            chatId:id,\n            type:\"message\",\n            content:msj,\n            options:{\n                parse_mode:\"MarkdownV2\"}\n        }\n    };\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2356,7 +2373,7 @@
         "type": "function",
         "z": "8595b6d4.a51f68",
         "g": "ebda3edd388e326b",
-        "name": "offline_node",
+        "name": "offline_msg",
         "func": "var msj = \"🔴*DESCONECTADO*:\\r\\n\";\nmsj += \"El sistema esta *DESCONECTADO*\\r\\n\";\nmsg.payload.options = { parse_mode : \"MarkdownV2\" };\nmsg.payload.content = msj;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
@@ -2542,5 +2559,50 @@
         "x": 675,
         "y": 2220,
         "wires": []
+    },
+    {
+        "id": "3c7ac65b882772b9",
+        "type": "mqtt out",
+        "z": "8595b6d4.a51f68",
+        "g": "76fc0a591b5308f6",
+        "name": "",
+        "topic": "cmnd/nodoscix/event",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6e888858.a02168",
+        "x": 960,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2d3e46a51a73f6bc",
+        "type": "inject",
+        "z": "8595b6d4.a51f68",
+        "g": "76fc0a591b5308f6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "activar",
+        "payloadType": "str",
+        "x": 750,
+        "y": 140,
+        "wires": [
+            [
+                "3c7ac65b882772b9"
+            ]
+        ]
     }
 ]
