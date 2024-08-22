@@ -576,7 +576,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1120,
-        "y": 1340,
+        "y": 1380,
         "wires": []
     },
     {
@@ -1612,8 +1612,9 @@
         "name": "initializeData",
         "func": "",
         "outputs": 0,
+        "timeout": "",
         "noerr": 0,
-        "initialize": "const horaActual = new Date().getTime();\nflow.set('time1Puerta', horaActual)\nflow.set('time2Puerta', horaActual)\nflow.set('time1Garaje', horaActual)\nflow.set('time2Garaje', horaActual)\nflow.set('isOnline', true)\nmsg = null;",
+        "initialize": "const horaActual = new Date().getTime();\nflow.set('time1Puerta', horaActual)\nflow.set('time2Puerta', horaActual)\nflow.set('time1Garaje', horaActual)\nflow.set('time2Garaje', horaActual)\nflow.set('isOnline', true)\nflow.set('enabled',1)\nmsg = null;",
         "finalize": "",
         "libs": [],
         "x": 590,
@@ -2310,7 +2311,8 @@
         "y": 1260,
         "wires": [
             [
-                "ffcd40ad.8952b"
+                "ffcd40ad.8952b",
+                "77c80ccd.9b2f04"
             ],
             [
                 "2637a656ab5e7fa2"
@@ -2360,8 +2362,7 @@
         "y": 1280,
         "wires": [
             [
-                "f5c8b64cf8f9cbd7",
-                "77c80ccd.9b2f04"
+                "f5c8b64cf8f9cbd7"
             ],
             [
                 "4353bb2c5cc5e752"
@@ -2604,5 +2605,22 @@
                 "3c7ac65b882772b9"
             ]
         ]
+    },
+    {
+        "id": "a5f7d6a9f76aaeb8",
+        "type": "debug",
+        "z": "8595b6d4.a51f68",
+        "name": "console",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1860,
+        "y": 240,
+        "wires": []
     }
 ]
