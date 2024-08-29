@@ -3,6 +3,7 @@
     "description": "A Node-RED Project",
     "version": "0.0.1",
     "private": true,
+    "start": "node $NODE_OPTIONS node_modules/node-red/red.js $FLOWS",
     "dependencies": {
         "node-red-contrib-play-audio": "^2.5.0",
         "node-red-contrib-telegrambot": "~16.0.2",
