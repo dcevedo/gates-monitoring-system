@@ -18,3 +18,5 @@ jspm_packages/
 .config.users.json 
 .config.runtime.json
 .sessions.json
+
+*.env
