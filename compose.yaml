@@ -1,0 +1,21 @@
+services:
+node-red:
+    build: .
+    container_name: node-red
+    environment:
+      VIRTUAL_HOST: ${NODE_RED_HOST}
+      VIRTUAL_PORT: 1880
+      LETSENCRYPT_HOST: ${NODE_RED_HOST}
+      TZ: America/Bogota
+    volumes:
+      - "./package.json:/data/package.json" 
+      - "./package-lock.json:/data/package-lock.json"
+      - "./flows.json:/data/flows.json"
+      - "./flows_cred.json:/data/flows_cred.json"
+      - "./settings_dcevedo.js:/data/settings.js"
+    networks:
+      - nginx-proxy
+networks:
+  nginx-proxy:
+    external: true
+
