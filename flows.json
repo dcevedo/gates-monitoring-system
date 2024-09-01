@@ -48,7 +48,7 @@
         ],
         "x": 1134,
         "y": 19,
-        "w": 692,
+        "w": 712,
         "h": 162
     },
     {
@@ -497,7 +497,7 @@
         "id": "6e888858.a02168",
         "type": "mqtt-broker",
         "name": "myqtthub",
-        "broker": "node02.myqtthub.com",
+        "broker": "${MQTT_HOST}",
         "port": "8883",
         "tls": "8ef2b1ba.8ce8d",
         "clientid": "nodered",
@@ -506,6 +506,7 @@
         "protocolVersion": "4",
         "keepalive": "60",
         "cleansession": true,
+        "autoUnsubscribe": true,
         "birthTopic": "nodered/LWT",
         "birthQos": "0",
         "birthRetain": "true",
@@ -1041,14 +1042,15 @@
         "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
-        "nbRateUnits": "10",
+        "nbRateUnits": "1",
         "rateUnits": "second",
         "randomFirst": "1",
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
+        "allowrate": false,
         "outputs": 1,
-        "x": 1480,
+        "x": 1470,
         "y": 140,
         "wires": [
             [
@@ -2188,7 +2190,7 @@
         "bot": "85814c6a.5b74c",
         "haserroroutput": false,
         "outputs": 1,
-        "x": 1710,
+        "x": 1730,
         "y": 120,
         "wires": [
             []
