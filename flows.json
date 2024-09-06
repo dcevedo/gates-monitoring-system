@@ -956,7 +956,8 @@
         "y": 580,
         "wires": [
             [
-                "6d845807.7cd798"
+                "6d845807.7cd798",
+                "92185363722ea44f"
             ]
         ]
     },
@@ -1152,7 +1153,8 @@
         "y": 240,
         "wires": [
             [
-                "7f177397.f3946c"
+                "7f177397.f3946c",
+                "92185363722ea44f"
             ]
         ]
     },
@@ -2992,7 +2994,7 @@
         "z": "8595b6d4.a51f68",
         "g": "6b7c499946c5043b",
         "name": "sendVideo",
-        "func": "const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\nconst isNotConverted = msg.rc.code;\n\nif(!isNotConverted){\n    msg.payload = {\n        content : '/data/video/output.mp4',\n        type : \"video\",\n        chatId : id,\n        options: {\n            caption: \"Here is the video\",\n        }\n    }\n}\nreturn msg;",
+        "func": "const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\nconst isNotConverted = msg.rc.code;\nconst captionMsg = msg.caption\nif(!isNotConverted){\n    msg.payload = {\n        content : '/data/video/output.mp4',\n        type : \"video\",\n        chatId : id,\n        options: {\n            caption:captionMsg,\n        }\n    }\n}\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3061,7 +3063,7 @@
         "z": "8595b6d4.a51f68",
         "g": "6b7c499946c5043b",
         "name": "searchRequestDoor",
-        "func": "const cameraIp= flow.get('publicIP');\nconst cameraChannel = msg.cameraChannel\nconst openTime = new Date (flow.get('time1Puerta'));\nconst bogotaTime = new Date(openTime.getTime() - 5 * 60 * 60 * 1000);\nconst startTime = formatTime(bogotaTime); // Remove milliseconds and keep the trailing Z\n\nconst secondsToAdd = 10\nconst endBogotaTime = new Date(bogotaTime.getTime() + secondsToAdd * 1000);\nconst endTime = formatTime(endBogotaTime);\n\nfunction formatTime(time) {\n  return time.toISOString().replace(/\\.\\d{3}Z$/, 'Z');\n}\n\nlet body = `\n<CMSearchDescription>\n  <searchID>C77384AD-66A0-0001-E7C2-1151F04F90B0</searchID>\n  <trackIDList>\n    <trackID>${cameraChannel}</trackID>\n  </trackIDList>\n  <timeSpanList>\n    <timeSpan>\n      <startTime>${startTime}</startTime>\n      <endTime>${endTime}</endTime>\n    </timeSpan>\n  </timeSpanList>\n  <maxResults>10</maxResults>\n  <searchResultPostion>0</searchResultPostion>\n  <metadataList>\n    <metadataDescriptor>//recordType.meta.std-cgi.com</metadataDescriptor>\n  </metadataList>\n</CMSearchDescription>\n`\nmsg = {\n  ip: cameraIp,\n  url: `http://${cameraIp}:8081/ISAPI/ContentMgmt/search`,\n  method: \"GET\",\n  payload: body,\n}\nreturn msg;",
+        "func": "const cameraIp= flow.get('publicIP');\nconst cameraChannel = msg.cameraChannel\nconst openTime = new Date (flow.get('time1Puerta'));\nconst closeTime = new Date(flow.get('time2Puerta'));\nconst formatOpenTime = formatCustomDate(openTime); \n\nconst bogotaTime = new Date(openTime.getTime() - 5 * 60 * 60 * 1000);\nconst startTime = formatTime(bogotaTime); // Remove milliseconds and keep the trailing Z\nconst secondsToAdd = 10\nconst endBogotaTime = new Date(bogotaTime.getTime() + secondsToAdd * 1000);\nconst endTime = formatTime(endBogotaTime);\n\nlet body = `\n<CMSearchDescription>\n  <searchID>C77384AD-66A0-0001-E7C2-1151F04F90B0</searchID>\n  <trackIDList>\n    <trackID>${cameraChannel}</trackID>\n  </trackIDList>\n  <timeSpanList>\n    <timeSpan>\n      <startTime>${startTime}</startTime>\n      <endTime>${endTime}</endTime>\n    </timeSpan>\n  </timeSpanList>\n  <maxResults>1</maxResults>\n  <searchResultPostion>0</searchResultPostion>\n  <metadataList>\n    <metadataDescriptor>//recordType.meta.std-cgi.com</metadataDescriptor>\n  </metadataList>\n</CMSearchDescription>\n`\nmsg = {\n  ip: cameraIp,\n  url: `http://${cameraIp}:8081/ISAPI/ContentMgmt/search`,\n  method: \"GET\",\n  payload: body,\n  caption: `Fecha Apertura: ${formatOpenTime}`\n}\n\nfunction formatCustomDate(date) {\n    return date.toLocaleString('en-CA', {\n        timeZone: 'America/Bogota',\n        year: 'numeric',\n        month: '2-digit',\n        day: '2-digit',\n        hour: '2-digit',\n        minute: '2-digit',\n        second: '2-digit',\n        hour12: false // Use 24-hour format\n    }).replace(',', '').replace(/\\//g, '/'); // Remove comma and keep slashes\n}\n\nfunction formatTime(time) {\n  return time.toISOString().replace(/\\.\\d{3}Z$/, 'Z');\n}\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
