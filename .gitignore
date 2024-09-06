@@ -11,6 +11,7 @@ lerna-debug.log*
 node_modules/
 lib/
 jspm_packages/
+.npm/
 
 #node-red
 *.backup
@@ -19,4 +20,6 @@ jspm_packages/
 .config.runtime.json
 .sessions.json
 
+#specific
+video/
 *.env

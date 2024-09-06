@@ -187,9 +187,9 @@
             "c782aee25dcb2d7e"
         ],
         "x": 34,
-        "y": 1839,
+        "y": 1999,
         "w": 812,
-        "h": 262
+        "h": 302
     },
     {
         "id": "95f1c954a3dea647",
@@ -213,7 +213,7 @@
             "8372c6341a3b12f4"
         ],
         "x": 34,
-        "y": 2139,
+        "y": 2359,
         "w": 682,
         "h": 162
     },
@@ -262,14 +262,9 @@
         "id": "7fccb777c862da50",
         "type": "group",
         "z": "8595b6d4.a51f68",
+        "name": "",
         "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
+            "label": true
         },
         "nodes": [
             "fef1a28e.fe6f4",
@@ -326,7 +321,28 @@
         "h": 162
     },
     {
-        "id": "1c62b5e9c7aad416",
+        "id": "878f49933484483e",
+        "type": "group",
+        "z": "8595b6d4.a51f68",
+        "name": "",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "bae483c1c348b5ba",
+            "94c0604a09d77668",
+            "1dbaa1cbdf837ac8",
+            "0cb80fb961424dd0",
+            "f650bc11d0aadf85",
+            "827d5d46968c3b88"
+        ],
+        "x": 1114,
+        "y": 2159,
+        "w": 812,
+        "h": 142
+    },
+    {
+        "id": "6b7c499946c5043b",
         "type": "group",
         "z": "8595b6d4.a51f68",
         "style": {
@@ -338,11 +354,49 @@
             "label-position": "nw",
             "color": "#a4a4a4"
         },
-        "nodes": [],
-        "x": 0,
-        "y": 0,
-        "w": 40,
-        "h": 40
+        "nodes": [
+            "bd5a36105bab329e",
+            "7db9e1c5e117fc3a",
+            "f0b628f92c930850",
+            "a3b0b0e0f143eb19",
+            "937784883319826d",
+            "8ec89138951a5750",
+            "626847f2f4992720",
+            "029343bb6ad121a4",
+            "eb6f5c8321075c93",
+            "b81fdac255d63ce4",
+            "ea10c09cd7553280",
+            "92185363722ea44f",
+            "db6fd6070db48558",
+            "99936694fa3ed9ee",
+            "ad68ab6c59717671"
+        ],
+        "x": 1074,
+        "y": 1619,
+        "w": 992,
+        "h": 442
+    },
+    {
+        "id": "bf03fe339239aac5",
+        "type": "group",
+        "z": "8595b6d4.a51f68",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "5305894ec14e2495",
+            "b86812baddfd30b0"
+        ],
+        "x": 34,
+        "y": 1819,
+        "w": 492,
+        "h": 82
     },
     {
         "id": "4617cc5d1d7c857f",
@@ -531,8 +585,9 @@
         "usernames": "",
         "chatids": "${BOT_IDS}",
         "baseapiurl": "",
+        "testenvironment": false,
         "updatemode": "polling",
-        "pollinterval": "300",
+        "pollinterval": "900",
         "usesocks": false,
         "sockshost": "",
         "socksport": "6667",
@@ -563,6 +618,21 @@
         "alpnprotocol": ""
     },
     {
+        "id": "b85ac332c10db1fa",
+        "type": "chatbot-slack-node",
+        "botname": "SLACK_SCIX",
+        "usernames": "",
+        "store": "",
+        "log": "",
+        "debug": false,
+        "serverPort": "",
+        "useWebSocket": true,
+        "storeMessages": true,
+        "enableMissionControl": false,
+        "inspectMessages": true,
+        "chatbotId": ""
+    },
+    {
         "id": "77c80ccd.9b2f04",
         "type": "debug",
         "z": "8595b6d4.a51f68",
@@ -576,8 +646,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1120,
-        "y": 1380,
+        "x": 1160,
+        "y": 1320,
         "wires": []
     },
     {
@@ -721,8 +791,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2480,
-        "y": 100,
+        "x": 1820,
+        "y": 240,
         "wires": [
             []
         ]
@@ -733,8 +803,9 @@
         "z": "8595b6d4.a51f68",
         "g": "ebda3edd388e326b",
         "name": "sendState",
-        "func": "let puerta=\"\",garaje=\"\";\nif(msg.payload == \"00\"){\n    puerta = \"*CERRADA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == \"01\"){\n    puerta = \"*CERRADA*\";\n    garaje = \"*ABIERTO*\";\n}\nelse if(msg.payload == \"10\"){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == \"11\"){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*ABIERTO*\";\n}\n\nconst t1p = flow.get('time1Puerta');\nconst t1g = flow.get('time1Garaje');\nconst tn = new Date().getTime();\nconst tpmin = Math.round((tn - t1p)/60000);\nconst tgmin = Math.round((tn - t1g)/60000);\nconst thpuerta = Math.floor(tpmin/60);\nconst thgaraje = Math.floor(tgmin/60);\nconst tminpuerta = Math.round(((tpmin/60)- thpuerta)*60);\nconst tmingaraje = Math.round(((tgmin/60)- thgaraje)*60);\n\nlet msj = \"✅*INFORMACION:*\\r\\n\";\nmsj += `La *PUERTA* está ${puerta} desde hace ${thpuerta} hora(s) y ${tminpuerta} Minuto(s)`;\nmsj += \"\\r\\n\";\nmsj += `El *GARAJE* está ${garaje} desde hace ${thgaraje} hora(s) y ${tmingaraje} Minuto(s)`;\nmsj += \"\\r\\n\";\nconst cid = flow.get('chatid');\nmsg.payload = {chatId:cid,type:\"message\",content:msj,options:{parse_mode:\"Markdown\"}};\nreturn msg;",
+        "func": "let puerta=\"\",garaje=\"\";\nif(msg.payload == \"00\"){\n    puerta = \"*CERRADA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == \"01\"){\n    puerta = \"*CERRADA*\";\n    garaje = \"*ABIERTO*\";\n}\nelse if(msg.payload == \"10\"){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*CERRADO*\";\n}\nelse if(msg.payload == \"11\"){\n    puerta = \"*ABIERTA*\";\n    garaje = \"*ABIERTO*\";\n}\n\nconst t1p = flow.get('time1Puerta');\nconst t1g = flow.get('time1Garaje');\nconst tn = new Date().getTime();\nconst tpmin = Math.round((tn - t1p)/60000);\nconst tgmin = Math.round((tn - t1g)/60000);\nconst thpuerta = Math.floor(tpmin/60);\nconst thgaraje = Math.floor(tgmin/60);\nconst tminpuerta = Math.round(((tpmin/60)- thpuerta)*60);\nconst tmingaraje = Math.round(((tgmin/60)- thgaraje)*60);\n\nlet msj = \"✅*INFORMACION:*\\r\\n\";\nmsj += `La *PUERTA* está ${puerta} desde hace ${thpuerta} hora(s) y ${tminpuerta} Minuto(s)`;\nmsj += \"\\r\\n\";\nmsj += `El *GARAJE* está ${garaje} desde hace ${thgaraje} hora(s) y ${tmingaraje} Minuto(s)`;\nmsj += \"\\r\\n\";\nconst cid = flow.get('chatid');\nmsg.payload = {\n    chatId:cid,\n    type:\"message\",\n    content:msj,\n    options:{\n        parse_mode:\"Markdown\"\n    }\n};\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -1616,7 +1687,7 @@
         "outputs": 0,
         "timeout": "",
         "noerr": 0,
-        "initialize": "const horaActual = new Date().getTime();\nflow.set('time1Puerta', horaActual)\nflow.set('time2Puerta', horaActual)\nflow.set('time1Garaje', horaActual)\nflow.set('time2Garaje', horaActual)\nflow.set('isOnline', true)\nflow.set('enabled',1)\nmsg = null;",
+        "initialize": "const horaActual = new Date().getTime();\nflow.set('time1Puerta', horaActual)\nflow.set('time2Puerta', horaActual)\nflow.set('time1Garaje', horaActual)\nflow.set('time2Garaje', horaActual)\nflow.set('isOnline', true)\nflow.set('enabled',1)\nflow.set('publicIP',\"\")\nmsg = null;",
         "finalize": "",
         "libs": [],
         "x": 590,
@@ -1655,7 +1726,7 @@
         "to": "",
         "reg": false,
         "x": 360,
-        "y": 1920,
+        "y": 2120,
         "wires": [
             [
                 "588d533d.cd3e5c"
@@ -1677,8 +1748,8 @@
         "correl": "",
         "expiry": "",
         "broker": "6e888858.a02168",
-        "x": 630,
-        "y": 1920,
+        "x": 650,
+        "y": 2120,
         "wires": []
     },
     {
@@ -1691,7 +1762,7 @@
         "action": "",
         "pretty": false,
         "x": 410,
-        "y": 2040,
+        "y": 2240,
         "wires": [
             [
                 "fe2c120.7f771f"
@@ -1713,7 +1784,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 160,
-        "y": 2020,
+        "y": 2220,
         "wires": [
             [
                 "6d3f9901.d47548"
@@ -1733,7 +1804,7 @@
         "finalize": "",
         "libs": [],
         "x": 580,
-        "y": 2040,
+        "y": 2240,
         "wires": []
     },
     {
@@ -1744,12 +1815,13 @@
         "name": "State",
         "func": "const ip = (flow.get('ip') || \"0\");\nconst ssid = (flow.get('ssid') || \"0\");\nconst uptime = flow.get('uptime') || \"0\";\nconst time = (flow.get('time') || \"0\");\nconst restartReason = flow.get(\"restartReason\") || \"0\";\nlet msj = `__*Hora actualizacion*__: ${time}\\r\\n__*SSID*__: ${ssid}\\r\\n`;\nmsj += `__*IP*__: ${ip}\\r\\n__*Uptime*__: ${uptime}\\r\\n`;\nmsj += `__*Restart Reason*__: ${restartReason}`\n\nconst parsedmsj = msj\n    .replaceAll(\".\", \"\\\\.\")\n    .replaceAll(\"-\", \"\\\\-\");\n\nmsg.payload.options = { parse_mode: \"MarkdownV2\" };\nmsg.payload.content = parsedmsj;\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 590,
-        "y": 1880,
+        "y": 2040,
         "wires": [
             [
                 "c782aee25dcb2d7e"
@@ -1774,7 +1846,7 @@
         "drop": false,
         "outputs": 1,
         "x": 340,
-        "y": 1880,
+        "y": 2040,
         "wires": [
             [
                 "13231ad3.1ec145"
@@ -1787,14 +1859,15 @@
         "z": "8595b6d4.a51f68",
         "g": "95f1c954a3dea647",
         "name": "INIT",
-        "func": "context.data = context.data || {};\nswitch (msg.topic) {\n    case \"tele/nodoscix/STATE\":\n        const up = msg.payload.Uptime;\n        const time = msg.payload.Time;\n        context.data.Uptime = up\n        context.data.Time = time.replaceAll(\"-\",\"\\\\-\");\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO2\":\n        const ip = msg.payload.Info2.IPAddress\n        context.data.IP = ip.replaceAll(\".\", \"\\\\.\");\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO3\":\n        context.data.RestartReason = msg.payload.Info3.RestartReason;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.Uptime && context.data.IP && context.data.RestartReason){\n    let msj = \"🔵*INIT*\\r\\n\"\n    msj += `__*Hora*__: ${context.data.Time} \\r\\n__*Uptime*__: ${context.data.Uptime}\\r\\n__*IP*__: ${context.data.IP}\\r\\n__*Restart Reason*__: ${context.data.RestartReason}`;\n    context.data={};\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {\n        payload: {\n            chatId:id,\n            type:\"message\",\n            content:msj,\n            options:{\n                parse_mode:\"MarkdownV2\"}\n        }\n    };\n    return msg;\n}",
+        "func": "context.data = context.data || {};\nswitch (msg.topic) {\n    case \"tele/nodoscix/STATE\":\n        const up = msg.payload.Uptime;\n        const time = msg.payload.Time;\n        context.data.Uptime = up\n        context.data.Time = time.replaceAll(\"-\",\"\\\\-\");\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO2\":\n        const ip = msg.payload.Info2.IPAddress\n        context.data.IP = ip.replaceAll(\".\", \"\\\\.\");\n        msg = null;\n        break;\n    case \"tele/nodoscix/INFO3\":\n        context.data.RestartReason = msg.payload.Info3.RestartReason;\n        msg = null;\n        break;\n    default:\n        msg = null;\n    \tbreak;\n}\n\nif(context.data.Uptime && context.data.IP && context.data.RestartReason){\n    let msj = \"🔵*INIT*\\r\\n\"\n    msj += `__*Hora*__: ${context.data.Time} \\r\\n__*Uptime*__: ${context.data.Uptime}\\r\\n__*IP*__: ${context.data.IP}\\r\\n__*Restart Reason*__: ${context.data.RestartReason}`;\n    context.data={};\n    const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {\n        payload: {\n            chatId:id,\n            type:\"message\",\n            content:msj,\n            options:{\n                parse_mode:\"MarkdownV2\"\n            }\n        }\n    };\n    return msg;\n}",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 530,
-        "y": 2220,
+        "y": 2440,
         "wires": [
             [
                 "8372c6341a3b12f4"
@@ -1816,7 +1889,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 150,
-        "y": 2180,
+        "y": 2400,
         "wires": [
             [
                 "c117387f.c1ee78"
@@ -1833,7 +1906,7 @@
         "action": "",
         "pretty": false,
         "x": 350,
-        "y": 2220,
+        "y": 2440,
         "wires": [
             [
                 "6b84058d.233b8c"
@@ -1901,7 +1974,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 170,
-        "y": 2060,
+        "y": 2260,
         "wires": [
             [
                 "6d3f9901.d47548"
@@ -1923,7 +1996,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 150,
-        "y": 2220,
+        "y": 2440,
         "wires": [
             [
                 "c117387f.c1ee78"
@@ -1945,7 +2018,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 150,
-        "y": 2260,
+        "y": 2480,
         "wires": [
             [
                 "c117387f.c1ee78"
@@ -1958,8 +2031,9 @@
         "z": "8595b6d4.a51f68",
         "g": "266f0d0a4b0823a3",
         "name": "LWT ONLINE",
-        "func": "if(msg.payload == \"Online\" && flow.get(\"isOnline\") === false){\n    const nowTime = new Date();\n    flow.set(\"onlineTime\", nowTime);\n    flow.set(\"isOnline\", true);\n    const offlineTime = flow.get(\"offlineTime\");\n    const downTimeMili = nowTime.getTime() - offlineTime.getTime(); \n    const downTimeMinutes = Math.round(downTimeMili/60000);\n    const downTimeHours = Math.floor(downTimeMinutes/60);\n    const msgBody = `🟢*CONEXION*:\nHora Conexion: ${nowTime.toLocaleString()}\nDowntime: *${downTimeHours}* Horas y *${downTimeMinutes}* Minutos`;\n    \n    const telegramId = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n    msg = {\n        payload: {\n            chatId: telegramId,\n            type: \"message\",\n            content: msgBody,\n            options: {\n                parse_mode: \"Markdown\"\n            }\n        }\n    };\n    \n    return msg;\n}",
+        "func": "if (msg.payload == \"Online\" && flow.get(\"isOnline\") === false) {\n  const nowTime = new Date();\n  flow.set(\"onlineTime\", nowTime);\n  flow.set(\"isOnline\", true);\n  const offlineTime = flow.get(\"offlineTime\");\n  const downTimeMili = nowTime.getTime() - offlineTime.getTime();\n  const downTimeMinutes = Math.round(downTimeMili / 60000);\n  const downTimeHours = Math.floor(downTimeMinutes / 60);\n  const msgBody = `🟢*CONEXION*:\n    Hora Conexion: ${nowTime.toLocaleString()}\n    Downtime: *${downTimeHours}* Horas y *${downTimeMinutes}* Minutos`;\n  const telegramId = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\n  msg = {\n    payload: {\n      chatId: telegramId,\n      type: \"message\",\n      content: msgBody,\n      options: {\n        parse_mode: \"Markdown\"\n      }\n    }\n  };\n  return msg;\n}",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -2173,7 +2247,7 @@
         "removeregexcommand": false,
         "outputs": 1,
         "x": 110,
-        "y": 1920,
+        "y": 2080,
         "wires": [
             [
                 "41e9e8.30465618",
@@ -2279,7 +2353,7 @@
         "rh": 0,
         "inputs": 0,
         "x": 160,
-        "y": 1980,
+        "y": 2180,
         "wires": [
             [
                 "6d3f9901.d47548"
@@ -2333,11 +2407,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 730,
-        "y": 1300,
+        "x": 710,
+        "y": 1320,
         "wires": [
             [
-                "ffcd40ad.8952b"
+                "bd6a0addd0877719"
             ]
         ]
     },
@@ -2529,7 +2603,8 @@
         "name": "toMsgHandler",
         "mode": "link",
         "links": [
-            "0d411e93da087075"
+            "0d411e93da087075",
+            "f650bc11d0aadf85"
         ],
         "x": 855,
         "y": 1720,
@@ -2543,10 +2618,11 @@
         "name": "toMsgHandler",
         "mode": "link",
         "links": [
-            "0d411e93da087075"
+            "0d411e93da087075",
+            "f650bc11d0aadf85"
         ],
         "x": 805,
-        "y": 1880,
+        "y": 2040,
         "wires": []
     },
     {
@@ -2557,10 +2633,11 @@
         "name": "toMsgHandler",
         "mode": "link",
         "links": [
-            "0d411e93da087075"
+            "0d411e93da087075",
+            "f650bc11d0aadf85"
         ],
         "x": 675,
-        "y": 2220,
+        "y": 2440,
         "wires": []
     },
     {
@@ -2609,20 +2686,518 @@
         ]
     },
     {
-        "id": "a5f7d6a9f76aaeb8",
+        "id": "bae483c1c348b5ba",
+        "type": "chatbot-slack-send",
+        "z": "8595b6d4.a51f68",
+        "g": "878f49933484483e",
+        "bot": "b85ac332c10db1fa",
+        "botProduction": "",
+        "track": false,
+        "passThrough": false,
+        "errorOutput": false,
+        "outputs": 0,
+        "x": 1830,
+        "y": 2200,
+        "wires": []
+    },
+    {
+        "id": "94c0604a09d77668",
         "type": "debug",
         "z": "8595b6d4.a51f68",
-        "name": "console",
+        "g": "878f49933484483e",
+        "name": "SLACK",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1860,
-        "y": 240,
+        "x": 1820,
+        "y": 2260,
         "wires": []
+    },
+    {
+        "id": "1dbaa1cbdf837ac8",
+        "type": "chatbot-conversation",
+        "z": "8595b6d4.a51f68",
+        "g": "878f49933484483e",
+        "name": "",
+        "botDevelopment": "b85ac332c10db1fa",
+        "botProduction": "",
+        "chatId": "${SLACK_CHANNEL_ID}",
+        "userId": "",
+        "transport": "slack",
+        "x": 1450,
+        "y": 2200,
+        "wires": [
+            [
+                "0cb80fb961424dd0"
+            ]
+        ]
+    },
+    {
+        "id": "0cb80fb961424dd0",
+        "type": "chatbot-message",
+        "z": "8595b6d4.a51f68",
+        "g": "878f49933484483e",
+        "name": "",
+        "message": [
+            {
+                "message": "{{msg.payload.content}}"
+            }
+        ],
+        "language": "none",
+        "x": 1630,
+        "y": 2200,
+        "wires": [
+            [
+                "bae483c1c348b5ba",
+                "94c0604a09d77668"
+            ]
+        ]
+    },
+    {
+        "id": "f650bc11d0aadf85",
+        "type": "link in",
+        "z": "8595b6d4.a51f68",
+        "g": "878f49933484483e",
+        "name": "link in 1",
+        "links": [
+            "cc3338651d7d942e",
+            "c782aee25dcb2d7e",
+            "8372c6341a3b12f4"
+        ],
+        "x": 1155,
+        "y": 2200,
+        "wires": [
+            [
+                "827d5d46968c3b88"
+            ]
+        ]
+    },
+    {
+        "id": "827d5d46968c3b88",
+        "type": "json",
+        "z": "8595b6d4.a51f68",
+        "g": "878f49933484483e",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 1290,
+        "y": 2200,
+        "wires": [
+            [
+                "1dbaa1cbdf837ac8"
+            ]
+        ]
+    },
+    {
+        "id": "bd5a36105bab329e",
+        "type": "http request",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": true,
+        "authType": "basic",
+        "senderr": false,
+        "headers": [],
+        "x": 1830,
+        "y": 1700,
+        "wires": [
+            [
+                "a3b0b0e0f143eb19"
+            ]
+        ]
+    },
+    {
+        "id": "7db9e1c5e117fc3a",
+        "type": "debug",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "http_request",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1950,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "f0b628f92c930850",
+        "type": "inject",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1180,
+        "y": 1660,
+        "wires": [
+            [
+                "92185363722ea44f"
+            ]
+        ]
+    },
+    {
+        "id": "a3b0b0e0f143eb19",
+        "type": "xml",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 1990,
+        "y": 1700,
+        "wires": [
+            [
+                "937784883319826d",
+                "7db9e1c5e117fc3a"
+            ]
+        ]
+    },
+    {
+        "id": "937784883319826d",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "getLastVideoURI",
+        "func": "const responseStatus = msg.payload.CMSearchResult.responseStatusStrg[0];\nif(responseStatus === \"OK\"){\n    msg.playbackURI = msg.payload.CMSearchResult.matchList[0].searchMatchItem[0].mediaSegmentDescriptor[0].playbackURI[0]\n    return [msg,null];\n}\nelse if (responseStatus === \"NO MATCHES\"){\n    return [null, msg];\n}",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1210,
+        "y": 1820,
+        "wires": [
+            [
+                "626847f2f4992720"
+            ],
+            [
+                "db6fd6070db48558"
+            ]
+        ]
+    },
+    {
+        "id": "8ec89138951a5750",
+        "type": "http request",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "",
+        "method": "use",
+        "ret": "bin",
+        "paytoqs": "body",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "basic",
+        "senderr": false,
+        "headers": [],
+        "x": 1670,
+        "y": 1820,
+        "wires": [
+            [
+                "029343bb6ad121a4"
+            ]
+        ]
+    },
+    {
+        "id": "626847f2f4992720",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "downloadRequest",
+        "func": "var body=`\n<downloadRequest version=\"1.0\" xmlns=\"http://www.isapi.org/ver20/XMLSchema\">\n    <playbackURI>\n        ${msg.playbackURI}\n    </playbackURI>\n</downloadRequest>\n`;\n\nmsg.url = `http://${msg.ip}:8081/ISAPI/ContentMgmt/download?type=mp4`;\nmsg.method = \"GET\";\nmsg.payload = body;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 1820,
+        "wires": [
+            [
+                "8ec89138951a5750"
+            ]
+        ]
+    },
+    {
+        "id": "029343bb6ad121a4",
+        "type": "file",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "",
+        "filename": "/data/video/video.mp4",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1880,
+        "y": 1820,
+        "wires": [
+            [
+                "ad68ab6c59717671"
+            ]
+        ]
+    },
+    {
+        "id": "eb6f5c8321075c93",
+        "type": "telegram sender",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "",
+        "bot": "85814c6a.5b74c",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 1890,
+        "y": 2020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b81fdac255d63ce4",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "sendVideo",
+        "func": "const id = Number(env.get(\"BOT_IDS\").split(\",\", 2)[1]);\nconst isNotConverted = msg.rc.code;\n\nif(!isNotConverted){\n    msg.payload = {\n        content : '/data/video/output.mp4',\n        type : \"video\",\n        chatId : id,\n        options: {\n            caption: \"Here is the video\",\n        }\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1670,
+        "y": 2020,
+        "wires": [
+            [
+                "eb6f5c8321075c93"
+            ]
+        ]
+    },
+    {
+        "id": "5305894ec14e2495",
+        "type": "mqtt in",
+        "z": "8595b6d4.a51f68",
+        "g": "bf03fe339239aac5",
+        "name": "",
+        "topic": "stat/nodoscix/public_ip",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "6e888858.a02168",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 1860,
+        "wires": [
+            [
+                "b86812baddfd30b0"
+            ]
+        ]
+    },
+    {
+        "id": "b86812baddfd30b0",
+        "type": "change",
+        "z": "8595b6d4.a51f68",
+        "g": "bf03fe339239aac5",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "publicIP",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 1860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea10c09cd7553280",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "searchRequestDoor",
+        "func": "const cameraIp= flow.get('publicIP');\nconst cameraChannel = msg.cameraChannel\nconst openTime = new Date (flow.get('time1Puerta'));\nconst bogotaTime = new Date(openTime.getTime() - 5 * 60 * 60 * 1000);\nconst startTime = formatTime(bogotaTime); // Remove milliseconds and keep the trailing Z\n\nconst secondsToAdd = 10\nconst endBogotaTime = new Date(bogotaTime.getTime() + secondsToAdd * 1000);\nconst endTime = formatTime(endBogotaTime);\n\nfunction formatTime(time) {\n  return time.toISOString().replace(/\\.\\d{3}Z$/, 'Z');\n}\n\nlet body = `\n<CMSearchDescription>\n  <searchID>C77384AD-66A0-0001-E7C2-1151F04F90B0</searchID>\n  <trackIDList>\n    <trackID>${cameraChannel}</trackID>\n  </trackIDList>\n  <timeSpanList>\n    <timeSpan>\n      <startTime>${startTime}</startTime>\n      <endTime>${endTime}</endTime>\n    </timeSpan>\n  </timeSpanList>\n  <maxResults>10</maxResults>\n  <searchResultPostion>0</searchResultPostion>\n  <metadataList>\n    <metadataDescriptor>//recordType.meta.std-cgi.com</metadataDescriptor>\n  </metadataList>\n</CMSearchDescription>\n`\nmsg = {\n  ip: cameraIp,\n  url: `http://${cameraIp}:8081/ISAPI/ContentMgmt/search`,\n  method: \"GET\",\n  payload: body,\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1620,
+        "y": 1700,
+        "wires": [
+            [
+                "bd5a36105bab329e"
+            ]
+        ]
+    },
+    {
+        "id": "d1bd5760e4f8098a",
+        "type": "function",
+        "z": "8595b6d4.a51f68",
+        "name": "time manage",
+        "func": "const options = {\n    timeZone: 'America/Bogota',\n    year: 'numeric',\n    month: '2-digit',\n    day: '2-digit',\n    hour: '2-digit',\n    minute: '2-digit',\n    second: '2-digit',\n    hour12: false // Ensure 24-hour format\n};\n\n// Get the local time in the specified time zone\nconst colombiaDate = new Intl.DateTimeFormat('en-CA', options).format(new Date()).replace(',', '');\n\n// Reformat the date to match the required ISO format\nconst formattedDate = colombiaDate.slice(0, 10) + 'T' + colombiaDate.slice(11) + 'Z';\n\nnode.log(formattedDate);\n\nfunction getFormattedUTCTimeMinus5() {\n    const now = new Date(new Date().getTime() - 5 * 60 * 60 * 1000);\n    return now.toISOString().replace(/\\.\\d{3}Z$/, 'Z'); // Remove milliseconds and keep the trailing Z\n}\n\n// Example usage:\nconsole.log(getFormattedUTCTimeMinus5());",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1590,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "92185363722ea44f",
+        "type": "change",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "setCamera101",
+        "rules": [
+            {
+                "t": "set",
+                "p": "cameraChannel",
+                "pt": "msg",
+                "to": "101",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1360,
+        "y": 1660,
+        "wires": [
+            [
+                "ea10c09cd7553280"
+            ]
+        ]
+    },
+    {
+        "id": "db6fd6070db48558",
+        "type": "change",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "setCamera501",
+        "rules": [
+            {
+                "t": "set",
+                "p": "cameraChannel",
+                "pt": "msg",
+                "to": "501",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1360,
+        "y": 1720,
+        "wires": [
+            [
+                "ea10c09cd7553280"
+            ]
+        ]
+    },
+    {
+        "id": "99936694fa3ed9ee",
+        "type": "inject",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1420,
+        "y": 2020,
+        "wires": [
+            [
+                "b81fdac255d63ce4"
+            ]
+        ]
+    },
+    {
+        "id": "ad68ab6c59717671",
+        "type": "exec",
+        "z": "8595b6d4.a51f68",
+        "g": "6b7c499946c5043b",
+        "command": "/usr/bin/ffmpeg -i \"/data/video/video.mp4\" -y -threads 1 -max_muxing_queue_size 9999 -c:v libx264 -crf 23 -maxrate 4.5M -preset veryfast -movflags +faststart -pix_fmt yuv420p -profile:v baseline -an \"/data/video/output.mp4\"",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "ffmpeg",
+        "x": 1610,
+        "y": 1920,
+        "wires": [
+            [
+                "7db9e1c5e117fc3a",
+                "b81fdac255d63ce4"
+            ],
+            [],
+            []
+        ]
     }
 ]
